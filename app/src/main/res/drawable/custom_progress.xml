@@ -1,0 +1,29 @@
+<!-- res/drawable/custom_progress.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background layer -->
+    <item android:id="@android:id/background">
+        <shape>
+            <gradient
+                android:startColor="#ADD8E6"
+                android:centerColor="#ADD8E6"
+                android:centerY="0.75"
+                android:endColor="#ADD8E6"
+                android:angle="270"
+                />
+        </shape>
+    </item>
+
+    <!-- Progress layer -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <gradient
+                    android:angle="0"
+                    android:startColor="#007A00"
+                    android:centerColor="#007A00"
+                    android:endColor="#06101d"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

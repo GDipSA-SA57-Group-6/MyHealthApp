@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GetUser">
+    <TextView
+        android:id="@+id/getUserTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:text="My Account Info"
+        android:layout_marginBottom="16dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:text="User Id" />
+
+    <EditText
+        android:id="@+id/txtUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:inputType="none"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:layout_marginTop="15dp"
+        android:background="#F0F0F0"
+        android:textColor="#555555"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp" />
+
+    <EditText
+        android:id="@+id/txtUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:inputType="none"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:background="#F0F0F0"
+        android:cursorVisible="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:inputType="textPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:background="#F0F0F0"
+        android:cursorVisible="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Birth Date (Year-Month-Day)"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp" />
+
+    <EditText
+        android:id="@+id/txtBirthDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:inputType="none"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:background="#F0F0F0"
+        android:cursorVisible="false"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Address"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp" />
+
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:inputType="none"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:background="#F0F0F0"
+        android:cursorVisible="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp" />
+
+
+    <EditText
+        android:id="@+id/txtGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:inputType="none"
+        android:focusable="false"
+        android:layout_marginTop="15dp"
+        android:background="#F0F0F0"
+        android:cursorVisible="false"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:text="Return to Dashboard"
+            android:textSize="12dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="1dp"
+            android:text="Update My Account Details"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/emailUs"
+        android:layout_width="200dp"
+        android:layout_height="18dp"
+        android:text="Email us for feedback:"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="84dp" />
+    <TextView
+        android:id="@+id/emailClick"
+        android:layout_width="200dp"
+        android:layout_height="18dp"
+        android:text="feedback@mha.com"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="84dp"
+        android:textColor="#367ff4"
+        android:clickable="true"
+        />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="108dp"
+        android:layout_height="38dp"
+        android:text="Delete Account"
+        android:textAllCaps="false"
+        android:textSize="12dp"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="1dp"
+         />
+
+
+</LinearLayout>

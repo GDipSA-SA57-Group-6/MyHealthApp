@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SetHealthTarget">
+
+    <TextView
+        android:id="@+id/setHealthTargetTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:textSize="38sp"
+        android:gravity="center"
+        android:text="Set My Health Target"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/setHealthTargetDesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:text="My current target is"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/getCurrentTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:text="Current Health Target"
+        android:layout_marginBottom="16dp"/>
+
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btnLoseWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lose Weight"
+            android:layout_marginBottom="16dp"
+            />
+
+        <Button
+            android:id="@+id/btnMaintainHealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Maintain Health"
+            android:layout_below="@id/btnLoseWeight"
+            android:layout_marginBottom="16dp"
+            />
+
+        <Button
+            android:id="@+id/btnGainWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gain Weight"
+            android:layout_below="@id/btnMaintainHealth"
+            />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:text="Return"
+            android:textSize="14dp"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginRight="10dp"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
