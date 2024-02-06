@@ -42,7 +42,7 @@ import okhttp3.Response;
 public class RecordExercise extends AppCompatActivity {
     OkHttpClient client;
     private LinearLayout container;
-    private Button minusButton, addButton, postButton, btnReturn;
+    private Button minusButton, addButton, postButton, btnReturn, btnInfoDisplay;
     private List<Exercise> exercises;
     private String[] timeArray = {"", "30 min", "60 min", "90 min", "120 min"};
     private int caloriesBurnt;
@@ -100,6 +100,17 @@ public class RecordExercise extends AppCompatActivity {
                 calculateTotalCalories(userId);
             }
         });
+
+
+        btnInfoDisplay = findViewById(R.id.btnInfoDisplay);
+        btnInfoDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecordExercise.this, RecordExerciseDisplay.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void addExerciseRow() {
