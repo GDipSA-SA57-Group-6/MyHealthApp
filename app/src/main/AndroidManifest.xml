@@ -17,10 +17,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".RecordExerciseDisplay"
+            android:exported="false" />
+        <activity
+            android:name=".RecordExercise_Display"
+            android:exported="false" />
+        <activity
             android:name=".DailySummary"
             android:exported="true" />
-
-
         <activity
             android:name=".RecordExercise"
             android:exported="false" />
@@ -38,15 +42,13 @@
             android:exported="true" />
         <activity
             android:name=".LoginPage"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".VideoPageActivity"
             android:exported="false"/>
@@ -55,8 +57,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".CreateUser"
             android:exported="true" />
