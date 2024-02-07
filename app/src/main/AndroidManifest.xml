@@ -48,6 +48,11 @@
 
 
         <activity
+            android:name=".VideoPageActivity"
+            android:exported="false"/>
+
+
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
 

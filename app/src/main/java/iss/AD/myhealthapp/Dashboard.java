@@ -97,6 +97,15 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+        Button btnVideoPage = findViewById(R.id.btnVideoPage);
+        btnVideoPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, VideoPageActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void showLogoutConfirmationDialog() {
@@ -136,6 +145,10 @@ public class Dashboard extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
+
+
+
+
 }
 
     /*
