@@ -265,12 +265,12 @@ public class DailySummary extends AppCompatActivity {
             int proteinTarget = proteinTargetBasedOnUserGender(gender);
 
             proteinTracker.setTarget(proteinTarget);
-            proteinTracker.setCurrentStatus(30);//LF: to update this number
+            proteinTracker.setCurrentStatus(60);//LF: to update this number
             proteinTracker.trackNutrition(this);
 
             //Calories
             int caloriesRequired = getCaloriesRequired();
-            int foodIntake = 2000;
+            int foodIntake = 3000;
             int exerciseCaloriesBurned = getExerciseCaloriesBurned();
 
             textViewNumCaloriesRequired.setText(String.valueOf(caloriesRequired));

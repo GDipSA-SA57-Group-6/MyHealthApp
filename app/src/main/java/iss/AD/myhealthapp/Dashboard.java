@@ -345,8 +345,15 @@ public class Dashboard extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
-        for (int i = 6; i >= 0; i--) {
+        // Add the current date
+        labels.add(sdf.format(calendar.getTime()));
+        formattedDates.add("Today");
+
+        // Add the past 6 days in reverse order
+        for (int i = 6; i > 0; i--) {
+            // Move to the previous day
             calendar.add(Calendar.DAY_OF_YEAR, -1);
+
             String date = sdf.format(calendar.getTime());
             labels.add(date);
 
@@ -357,8 +364,10 @@ public class Dashboard extends AppCompatActivity {
 
         // Sort labels in ascending order
         Collections.sort(labels);
+    // Reverse the order of formattedDates
+        Collections.reverse(formattedDates);
 
-        // Iterate over the labels and find the corresponding entry in the data
+    // Iterate over the labels and find the corresponding entry in the data
         for (int i = 0; i < labels.size(); i++) {
             String currentDate = labels.get(i);
             JSONObject entry = findEntryByDate(data, currentDate);
@@ -386,6 +395,7 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
+
     // Helper method to find the entry with a specific date
     private JSONObject findEntryByDate(JSONArray data, String targetDate) {
         for (int i = 0; i < data.length(); i++) {
