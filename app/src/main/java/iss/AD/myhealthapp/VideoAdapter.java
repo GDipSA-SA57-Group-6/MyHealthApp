@@ -37,7 +37,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
         VideoInfo video = videoList.get(position);
-        // 设置图片和描述。使用图片加载库Glide来加载网络图片。
+        // 设置图片和描述
         Glide.with(context).load(video.getImageUrl()).into(holder.imageView);
         holder.textViewDescription.setText(video.getDescription());
 

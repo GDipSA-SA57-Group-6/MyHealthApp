@@ -64,7 +64,7 @@ public class LoginPage extends AppCompatActivity {
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                需要login验证的代码
+
                 String name = mUsernameTxt.getText().toString();
                 String password = mPasswordTxt.getText().toString();
                 logIn(name, password);
