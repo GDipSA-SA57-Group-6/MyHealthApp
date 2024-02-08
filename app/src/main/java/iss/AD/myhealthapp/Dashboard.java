@@ -154,6 +154,16 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
+        Button btnRecordFoodConsumption = findViewById(R.id.btnRecordFoodConsumption);
+        btnRecordFoodConsumption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Dashboard.this, SelectActivity.class));
+            }
+        });
+
+
+
         Button mBtnDailySummary = findViewById(R.id.btnDailySummary);
         mBtnDailySummary.setOnClickListener(new View.OnClickListener() {
             @Override
