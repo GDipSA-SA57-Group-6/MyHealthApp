@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,19 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ViewItemRecordedActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Submission"
-            android:exported="false" />
-        <activity
-            android:name=".AddCustomizedItemActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SelectActivity"
-            android:exported="false" />
-        <activity
             android:name=".RecordExerciseDisplay"
+            android:exported="false" />
+        <activity
+            android:name=".RecordExercise_Display"
             android:exported="false" />
         <activity
             android:name=".DailySummary"
@@ -47,6 +36,15 @@
             android:exported="false" />
         <activity
             android:name=".Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".GetUser"
+            android:exported="true" />
+        <activity android:name=".NavigationActivity"/>
+        <activity android:name=".DiabetesMainActivity"/>
+        <activity android:name=".HeartDiseaseMainActivity"/>
+        <activity
+            android:name=".LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,14 +53,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GetUser"
-            android:exported="true" />
-        <activity
-            android:name=".LoginPage"
-            android:exported="true" />
-        <activity
             android:name=".VideoPageActivity"
-            android:exported="false" />
+            android:exported="false"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true" />

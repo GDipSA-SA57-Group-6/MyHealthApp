@@ -11,11 +11,9 @@
 
     <!-- ImageView -->
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_foreground"
+        android:id="@+id/userImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="31dp"
         tools:layout_editor_absoluteY="46dp"
         tools:srcCompat="@tools:sample/avatars"
@@ -25,22 +23,8 @@
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032"
+        app:layout_constraintVertical_bias="0.022"
         />
-
-    <Button
-        android:id="@+id/buttonPickImage"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="Pick Image"
-        android:textAllCaps="false"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203" />
 
     <TextView
         android:id="@+id/dashboardText"
@@ -116,6 +100,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.17" />
+    <Button
+        android:id="@+id/btnDiseasePrediction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Disease Prediction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGetUser"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <Button
@@ -146,21 +139,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.30" />
 
-
-    <Button
-        android:id="@+id/btnRecordFoodConsumption"
-        android:layout_width="150dp"
-        android:layout_height="38dp"
-        android:text="Record Food"
-        android:textAllCaps="false"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.40" />
-
     <Button
         android:id="@+id/btnDailySummary"
         android:layout_width="150dp"
@@ -186,8 +164,6 @@
 <!--        app:layout_constraintHorizontal_bias="0.497"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@id/btnDailySummary" />-->
-
-
 
     <Button
         android:id="@+id/btnVideoPage"

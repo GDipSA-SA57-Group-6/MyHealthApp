@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dateDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Date"
+        android:textSize="16sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Age Input -->
+    <TextView
+        android:id="@+id/labelAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age"
+        android:layout_below="@id/dateDisplay" />
+    <EditText
+        android:id="@+id/ageInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelAge"
+        android:inputType="numberDecimal" />
+    <TextView
+        android:id="@+id/errorAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ageInput"
+        android:textColor="#D32F2F" />
+
+    <!-- Sex Input -->
+    <TextView
+        android:id="@+id/labelSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/errorAge"
+        android:text="Sex (1 for male, 0 for female)" />
+    <EditText
+        android:id="@+id/sexInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/labelSex"
+        android:inputType="number" />
+    <TextView
+        android:id="@+id/errorSex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sexInput"
+        android:textColor="#D32F2F" />
+
+    <!-- Chest Pain Type Input -->
+    <TextView
+        android:id="@+id/labelCp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/errorSex"
+        android:text="Chest Pain Type" />
+    <EditText
+        android:id="@+id/cpInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelCp"
+        android:inputType="number" />
+    <TextView
+        android:id="@+id/errorCp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cpInput"
+        android:textColor="#D32F2F" />
+
+    <!-- Resting Blood Pressure Input -->
+    <TextView
+        android:id="@+id/labelTrestbps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/errorCp"
+        android:text="Resting Blood Pressure" />
+    <EditText
+        android:id="@+id/trestbpsInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelTrestbps"
+        android:inputType="numberDecimal" />
+    <TextView
+        android:id="@+id/errorTrestbps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trestbpsInput"
+        android:textColor="#D32F2F" />
+
+    <!-- Maximum Heart Rate Achieved Input -->
+    <TextView
+        android:id="@+id/labelThalach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/errorTrestbps"
+        android:text="Maximum Heart Rate Achieved" />
+    <EditText
+        android:id="@+id/thalachInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelThalach"
+        android:inputType="numberDecimal" />
+    <TextView
+        android:id="@+id/errorThalach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/thalachInput"
+        android:textColor="#D32F2F" />
+
+
+    <!-- Exercise Induced Angina Input -->
+    <TextView
+        android:id="@+id/labelExang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/errorThalach"
+        android:text="Exercise Induced Angina" />
+    <EditText
+        android:id="@+id/exangInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelExang"
+        android:inputType="number" />
+    <TextView
+        android:id="@+id/errorExang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/exangInput"
+        android:textColor="#D32F2F" />
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/errorExang"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Predict" />
+
+        <Button
+            android:id="@+id/clearBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+
+        <Button
+            android:id="@+id/backToMainBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back to Main" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text=" "
+        android:textSize="18sp" />
+
+</RelativeLayout>

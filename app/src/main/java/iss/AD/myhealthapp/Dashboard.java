@@ -1,22 +1,14 @@
 package iss.AD.myhealthapp;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -35,9 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,16 +45,13 @@ import java.util.concurrent.CountDownLatch;
 
 public class Dashboard extends AppCompatActivity {
     OkHttpClient client;
-    Button mBtnGetUser, mBtnLogout, mBtnSetHealthTarget, mBtnRecordExercise;
+    Button mBtnGetUser, mBtnLogout, mBtnSetHealthTarget, mBtnRecordExercise,btnDiseasePrediction;
     TextView mUserNameTextView;
 
     BarChart barChartCaloriesBurnt;
     private CountDownLatch latch;
 
-    private ImageView imageView;
-    private Button buttonPickImage;
-
-    private ActivityResultLauncher<Intent> imagePickerLauncher;
+    private ImageView userImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,36 +75,26 @@ public class Dashboard extends AppCompatActivity {
 
 
         barChartCaloriesBurnt = findViewById(R.id.barChartCaloriesBurnt);
-        latch = new CountDownLatch(1);
+        CountDownLatch latch = new CountDownLatch(1);
         fetchCaloriesBurntDataInBackground(userId, latch);
 
 
 
-        imageView = findViewById(R.id.imageView);
-        buttonPickImage = findViewById(R.id.buttonPickImage);
+        userImageView = findViewById(R.id.userImageView);
+        userImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
-        // Initialize the Activity Result Launcher
-        imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                        Uri imageUri = result.getData().getData();
-                        try {
-                            Bitmap bitmap = loadBitmapFromUri(imageUri);
-                            imageView.setImageBitmap(bitmap);
-
-                            // Save the image to internal storage
-                            saveImageToInternalStorage(bitmap);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-        buttonPickImage.setOnClickListener(view -> openImagePicker());
-
-        // Load and display the previously saved image
-        loadAndDisplaySavedImage();
+        btnDiseasePrediction = findViewById(R.id.btnDiseasePrediction);
+        btnDiseasePrediction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, NavigationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mBtnGetUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,16 +131,6 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        Button btnRecordFoodConsumption = findViewById(R.id.btnRecordFoodConsumption);
-        btnRecordFoodConsumption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Dashboard.this, SelectActivity.class));
-            }
-        });
-
-
-
         Button mBtnDailySummary = findViewById(R.id.btnDailySummary);
         mBtnDailySummary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,66 +153,6 @@ public class Dashboard extends AppCompatActivity {
         });
 
 
-    }
-
-    private void openImagePicker() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        imagePickerLauncher.launch(intent);
-    }
-
-    private Bitmap loadBitmapFromUri(Uri imageUri) throws IOException {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            return ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(), imageUri));
-        } else {
-            return MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-        }
-    }
-
-
-    private void saveImageToInternalStorage(Bitmap bitmap) {
-        try {
-            // Get user ID from SharedPreferences
-            SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
-            int userId = pref.getInt("userId", -1);
-
-            // Create a file name with user ID tag
-            String fileName = "profile_image_" + userId + ".jpg";
-
-            // Open file output stream
-            OutputStream outputStream = openFileOutput(fileName, MODE_PRIVATE);
-
-            // Compress the bitmap to JPEG format
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-
-            // Close the output stream
-            outputStream.close();
-
-            // Display a success message or handle the file as needed
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loadAndDisplaySavedImage() {
-        try {
-            // Get user ID from SharedPreferences
-            SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
-            int userId = pref.getInt("userId", -1);
-
-            // Create a file name with user ID tag
-            String fileName = "profile_image_" + userId + ".jpg";
-
-            // Load the previously saved image from internal storage
-            FileInputStream inputStream = openFileInput(fileName);
-            Bitmap savedBitmap = BitmapFactory.decodeStream(inputStream);
-            inputStream.close();
-
-            // Display the saved image
-            imageView.setImageBitmap(savedBitmap);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -295,7 +202,7 @@ public class Dashboard extends AppCompatActivity {
         new Thread(() -> {
             OkHttpClient client = new OkHttpClient();
 
-            String apiUrl = "http://10.0.2.2:8080/api/daily-exercise/last-7-days/" + userId;
+            String apiUrl = "http://192.168.1.98:8080/api/daily-exercise/last-7-days/" + userId;
 
             Request request = new Request.Builder()
                     .url(apiUrl)
@@ -345,15 +252,8 @@ public class Dashboard extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
-        // Add the current date
-        labels.add(sdf.format(calendar.getTime()));
-        formattedDates.add("Today");
-
-        // Add the past 6 days in reverse order
-        for (int i = 6; i > 0; i--) {
-            // Move to the previous day
+        for (int i = 6; i >= 0; i--) {
             calendar.add(Calendar.DAY_OF_YEAR, -1);
-
             String date = sdf.format(calendar.getTime());
             labels.add(date);
 
@@ -364,10 +264,8 @@ public class Dashboard extends AppCompatActivity {
 
         // Sort labels in ascending order
         Collections.sort(labels);
-    // Reverse the order of formattedDates
-        Collections.reverse(formattedDates);
 
-    // Iterate over the labels and find the corresponding entry in the data
+        // Iterate over the labels and find the corresponding entry in the data
         for (int i = 0; i < labels.size(); i++) {
             String currentDate = labels.get(i);
             JSONObject entry = findEntryByDate(data, currentDate);
@@ -395,7 +293,6 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
-
     // Helper method to find the entry with a specific date
     private JSONObject findEntryByDate(JSONArray data, String targetDate) {
         for (int i = 0; i < data.length(); i++) {

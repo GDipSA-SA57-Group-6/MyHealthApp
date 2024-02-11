@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:padding="8dp">
 
     <ImageView
@@ -14,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8"/>
+        app:layout_constraintWidth_percent="0.5"/>
 
     <TextView
         android:id="@+id/textViewDescription"
@@ -25,4 +24,4 @@
         app:layout_constraintStart_toStartOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="@id/imageView"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_foreground" />
-
-    <Button
-        android:id="@+id/buttonPickImage"
+    <TextView
+        android:id="@+id/textViewDescribeFormula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
-        android:layout_marginTop="16dp"
-        android:text="Pick Image" />
-</RelativeLayout>
+        android:text="Food Intake - Exercise Calories Burned = Calories Required* \n\n(*Based on your Health Target)"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="16dp"
+            android:progressDrawable="@drawable/custom_progress"
+            android:indeterminate="false"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            android:progressTint="@android:color/holo_green_light"
+            />
+
+    <TextView
+        android:id="@+id/textViewSuggestionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Optimizing Your Wellness:"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/textViewSuggestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Suggestion"/>
+
+</LinearLayout>

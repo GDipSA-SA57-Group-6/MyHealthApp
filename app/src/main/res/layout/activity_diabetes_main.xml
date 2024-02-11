@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/dateDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Date"
+            android:textSize="16sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <!-- HighBP Label -->
+        <TextView
+            android:id="@+id/labelHighBP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High Blood Pressure"
+            android:layout_below="@id/dateDisplay" />
+
+        <!-- HighBP Input -->
+        <EditText
+            android:id="@+id/highBpInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelHighBP"
+            />
+        <TextView
+            android:id="@+id/errorHighBp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/highBpInput"
+            android:textColor="#D32F2F" />
+
+        <!-- BMI Label -->
+        <TextView
+            android:id="@+id/labelBMI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorHighBp"
+            android:text="Body Mass Index" />
+
+        <!-- BMI Input -->
+        <EditText
+            android:id="@+id/bmiInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelBMI"
+            />
+        <TextView
+            android:id="@+id/errorBmi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bmiInput"
+            android:textColor="#D32F2F" />
+
+        <!-- HeartDiseaseorAttack Label -->
+        <TextView
+            android:id="@+id/labelHeartDiseaseorAttack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorBmi"
+            android:text="Heart Disease or Attack" />
+
+        <!-- HeartDiseaseorAttack Input -->
+        <EditText
+            android:id="@+id/heartDiseaseInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelHeartDiseaseorAttack"
+            />
+        <TextView
+            android:id="@+id/errorHeartDiseaseorAttack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heartDiseaseInput"
+            android:textColor="#D32F2F" />
+
+        <!-- GenHlth Label -->
+        <TextView
+            android:id="@+id/labelGenHlth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorHeartDiseaseorAttack"
+            android:text="General Health" />
+
+        <!-- GenHlth Input -->
+        <EditText
+            android:id="@+id/genHlthInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelGenHlth"
+            />
+        <TextView
+            android:id="@+id/errorGenHlth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/genHlthInput"
+            android:textColor="#D32F2F" />
+
+        <!-- PhysHlth Label -->
+        <TextView
+            android:id="@+id/labelPhysHlth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorGenHlth"
+            android:text="Physical Health" />
+
+        <!-- PhysHlth Input -->
+        <EditText
+            android:id="@+id/physHlthInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelPhysHlth"
+            />
+        <TextView
+            android:id="@+id/errorPhysHlth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/physHlthInput"
+            android:textColor="#D32F2F" />
+
+        <!-- DiffWalk Label -->
+        <TextView
+            android:id="@+id/labelDiffWalk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorPhysHlth"
+            android:text="Difficulty Walking" />
+
+        <!-- DiffWalk Input -->
+        <EditText
+            android:id="@+id/diffWalkInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelDiffWalk"
+            />
+        <TextView
+            android:id="@+id/errorDiffWalk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/diffWalkInput"
+            android:textColor="#D32F2F" />
+
+        <!-- Age Label -->
+        <TextView
+            android:id="@+id/labelAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorDiffWalk"
+            android:text="Age" />
+
+        <!-- Age Input -->
+        <EditText
+            android:id="@+id/ageInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelAge"
+            />
+        <TextView
+            android:id="@+id/errorAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ageInput"
+            android:textColor="#D32F2F" />
+
+        <!-- Income Label -->
+        <TextView
+            android:id="@+id/labelIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorAge"
+            android:text="Income" />
+
+        <EditText
+            android:id="@+id/incomeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelIncome"
+            />
+        <TextView
+            android:id="@+id/errorIncome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/incomeInput"
+            android:textColor="#D32F2F" />
+
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/errorIncome"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/submitBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Predict" />
+
+            <Button
+                android:id="@+id/clearBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear" />
+
+            <Button
+                android:id="@+id/backToMainBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back to Main" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonLayout"
+            android:text=" "
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -191,7 +191,7 @@ public class CreateUser extends AppCompatActivity {
 
         // Build the POST request
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/user/create")
+                .url("http://192.168.1.98:8080/api/user/create")
                 .post(requestBody)
                 .build();
 
