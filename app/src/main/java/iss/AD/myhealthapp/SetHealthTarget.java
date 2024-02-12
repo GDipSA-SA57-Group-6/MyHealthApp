@@ -126,7 +126,7 @@ public class SetHealthTarget extends AppCompatActivity {
 
         RequestBody requestBody = RequestBody.create(jsonBody.toString(), MediaType.parse("application/json"));
 
-        String apiUrl = "http://10.0.2.2:8080/api/user/updatecalories/" + userId;
+        String apiUrl = "http://192.168.1.98:8080/api/user/updatecalories/" + userId;
         // Build the POST request
         Request request = new Request.Builder()
                 .url(apiUrl)
