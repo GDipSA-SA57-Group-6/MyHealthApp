@@ -204,7 +204,7 @@ public class RecordExercise extends AppCompatActivity {
 
         // Build the PUT request
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/daily-exercise/update-calories")
+                .url("http://192.168.1.98:8080/api/daily-exercise/update-calories")
                 .post(requestBody)
                 .build();
 

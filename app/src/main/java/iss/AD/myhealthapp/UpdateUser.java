@@ -96,7 +96,7 @@ public class UpdateUser extends AppCompatActivity {
 
     private void retrieveUserDetails(int userId) {
 
-        String apiUrl = "http://10.0.2.2:8080/api/user/get/" + userId;
+        String apiUrl = "http://192.168.1.98:8080/api/user/get/" + userId;
 
         Request request = new Request.Builder()
                 .url(apiUrl)

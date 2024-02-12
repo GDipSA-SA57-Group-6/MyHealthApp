@@ -157,7 +157,7 @@ public class DailySummary extends AppCompatActivity {
 
     // CountDownLatch #1
     public void getGenderTargetCaloriesByUserId(int userId, CountDownLatch latch){
-        String apiUrl = "http://10.0.2.2:8080/api/user/get/" + userId;
+        String apiUrl = "http://192.168.1.98:8080/api/user/get/" + userId;
 
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -212,7 +212,7 @@ public class DailySummary extends AppCompatActivity {
     }
 
     public void getCaloriesBurntTodayByUserId(int userId, CountDownLatch latch){
-        String apiUrl = "http://10.0.2.2:8080/api/daily-exercise/calories-burnt-today/" + userId;
+        String apiUrl = "http://192.168.1.98:8080/api/daily-exercise/calories-burnt-today/" + userId;
 
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -265,12 +265,12 @@ public class DailySummary extends AppCompatActivity {
             int proteinTarget = proteinTargetBasedOnUserGender(gender);
 
             proteinTracker.setTarget(proteinTarget);
-            proteinTracker.setCurrentStatus(60);//LF: to update this number
+            proteinTracker.setCurrentStatus(30);//LF: to update this number
             proteinTracker.trackNutrition(this);
 
             //Calories
             int caloriesRequired = getCaloriesRequired();
-            int foodIntake = 3000;
+            int foodIntake = 2000;
             int exerciseCaloriesBurned = getExerciseCaloriesBurned();
 
             textViewNumCaloriesRequired.setText(String.valueOf(caloriesRequired));

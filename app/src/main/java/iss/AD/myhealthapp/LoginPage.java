@@ -68,8 +68,8 @@ public class LoginPage extends AppCompatActivity {
                 String name = mUsernameTxt.getText().toString();
                 String password = mPasswordTxt.getText().toString();
                 logIn(name, password);
-                //用于开发时跳过密码验证的部分
-//                startProtectedActivity();
+
+                startProtectedActivity();
             }
         });
     }
@@ -89,7 +89,7 @@ public class LoginPage extends AppCompatActivity {
 
         // Create the login request
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/login")
+                .url("http://192.168.1.98:8080/api/login")
                 .post(requestBody)
                 .build();
 
