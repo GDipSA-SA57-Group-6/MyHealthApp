@@ -28,6 +28,17 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.reflect.TypeToken;
 
 public class SelectActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -73,25 +84,25 @@ public class SelectActivity extends AppCompatActivity implements AdapterView.OnI
                     if (response.isSuccessful()) {
                         String responseData = response.body().string();
                         if (responseData != null && responseData != ""){
-                            foodList = parseJsonArray(responseData);
+                        foodList = parseJsonArray(responseData);
 
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ListView listView = findViewById(R.id.listView);
-                                    if (listView != null) {
-                                        MyAdapter adapter = new MyAdapter(SelectActivity.this, foodList, clickCountMap);
-                                        listView.setOnItemClickListener(SelectActivity.this);
-                                        listView.setAdapter(adapter);
-                                    }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ListView listView = findViewById(R.id.listView);
+                                if (listView != null) {
+                                    MyAdapter adapter = new MyAdapter(SelectActivity.this, foodList, clickCountMap);
+                                    listView.setOnItemClickListener(SelectActivity.this);
+                                    listView.setAdapter(adapter);
                                 }
-                            });
+                            }
+                        });
 
 
-                        } else {
-                            Log.e("GetFoods", "Unexpected response code: " + response.code());
-                        }
-                    }} catch (JSONException e) {
+                    } else {
+                        Log.e("GetFoods", "Unexpected response code: " + response.code());
+                    }
+                }} catch (JSONException e) {
                     e.printStackTrace();
                     Log.e("GetFoods", "Error parsing JSON", e);
                 }
@@ -145,14 +156,15 @@ public class SelectActivity extends AppCompatActivity implements AdapterView.OnI
 
         JSONArray jsonArray = new JSONArray(jsonArrayString);
 
+        Gson gson=new Gson();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
+            Food food = gson.fromJson(jsonObject.toString(), Food.class);
 
-            int id = jsonObject.getInt("id");
-            String name = jsonObject.getString("name");
-            String quantity_description = jsonObject.getString("quantity_description");
-
-            Food food = new Food(id, name, quantity_description);
+            //int id = jsonObject.getInt("id");
+            //String name = jsonObject.getString("name");
+            //String quantity_description = jsonObject.getString("quantity_description");
+            //Food food = new Food(id, name, quantity_description);
             foodList.add(food);
         }
 
