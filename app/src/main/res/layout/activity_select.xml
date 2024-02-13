@@ -31,12 +31,17 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/ViewItemBtn"
+            android:id="@+id/btnReturn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="View Item Recorded"
-            android:textSize="15sp" />
+            android:text="Return"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:background="#E0FCFA"
+            android:textSize="12sp" />
 
 
         <Button
@@ -45,7 +50,29 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Add customized Item"
-            android:textSize="15sp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:background="#E0FCFA"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/ViewItemBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="View Item Recorded"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:background="#E0FCFA"
+            android:textSize="12sp" />
+
+
+
+
     </LinearLayout>
 
 </RelativeLayout>

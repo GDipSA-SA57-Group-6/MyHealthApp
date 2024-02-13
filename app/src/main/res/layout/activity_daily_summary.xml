@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     >
 
     <ImageView
         android:id="@+id/myImageView"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:scaleType="centerCrop"
         android:src="@drawable/bg" />
 
@@ -19,25 +20,28 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="2dp"
         android:text="My Daily Summary"
-        android:textSize="25sp" />
+        android:textSize="40sp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="5dp">
+        android:layout_marginLeft="0dp"
+        android:paddingTop="5dp"
+        android:background="#FBEEFF">
 
         <!-- Protein -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="220dp"
+            android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp">
 
             <TextView
@@ -47,6 +51,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="PROTEIN"
+                android:textStyle="bold"
                 android:layout_marginBottom="1dp"/>
             <TextView
                 android:id="@+id/proteinTextViewTarget"
@@ -93,46 +98,186 @@
         </LinearLayout>
         <!-- Protein -->
 
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/recordBtn"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Record Food Consumption" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="5dp">
-        <TextView
-            android:id="@+id/textViewDescribeFormula"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Recommended Caloric Consumption: \nFood Intake - Exercise Calories Burned = Calories Required* \n(*Based on your Health Target)"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My respective calories amount:"
+
+        <!-- Fats -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
             android:layout_marginLeft="15dp"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            android:padding="8dp"/>
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/fatsTextView"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="FATS"
+                android:textStyle="bold"
+                android:layout_marginBottom="1dp"/>
+            <TextView
+                android:id="@+id/fatsTextViewTarget"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Target:"
+                android:layout_marginBottom="1dp"/>
+
+            <!-- Fats -->
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:layout_marginBottom="1dp">
+
+                <ProgressBar
+                    android:id="@+id/fatsProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="1dp"
+                    android:progressDrawable="@drawable/custom_progress"
+                    android:indeterminate="false"
+                    android:rotation="270"
+                    android:visibility="visible"
+                    android:progressTint="@android:color/holo_green_light"
+                    />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/fatsTextViewStatus"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="Current Status:"/>
+            <TextView
+                android:id="@+id/fatsTextViewDifferent"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="Fats Different"/>
+        </LinearLayout>
+        <!-- Fats -->
+
+
+
+        <!-- Carbs -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/carbsTextView"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="CARBS"
+                android:textStyle="bold"
+                android:layout_marginBottom="1dp"/>
+            <TextView
+                android:id="@+id/carbsTextViewTarget"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Target:"
+                android:layout_marginBottom="1dp"/>
+
+            <!-- Carbs -->
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:layout_marginBottom="1dp">
+
+                <ProgressBar
+                    android:id="@+id/carbsProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="1dp"
+                    android:progressDrawable="@drawable/custom_progress"
+                    android:indeterminate="false"
+                    android:rotation="270"
+                    android:visibility="visible"
+                    android:progressTint="@android:color/holo_green_light"
+                    />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/carbsTextViewStatus"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="Current Status:"/>
+            <TextView
+                android:id="@+id/carbsTextViewDifferent"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="Carbs Different"/>
+        </LinearLayout>
+        <!-- Carbs -->
+
+    </LinearLayout>
+<!--
+    <Button
+        android:id="@+id/btnRecordFoodConsumption"
+        android:layout_marginTop="0dp"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        android:textSize="15dp"
+        android:text="Record Food" />
+-->
+
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="0dp">
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:paddingTop="10dp"
+            android:background="#F9FFEE">
+            <TextView
+                android:id="@+id/textViewDescribeFormula"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Recommended Caloric Consumption: \nFood Intake - Exercise Calories Burned = Calories Required* \n(*Based on your Health Target)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My respective calories amount:"
+                android:layout_marginLeft="15dp"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:padding="8dp"/>
 
 
-            <!-- Food Intake -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="0dp">
+
+
+                <!-- Food Intake -->
             <TextView
                 android:id="@+id/textViewNumFoodIntake"
                 android:layout_width="100dp"
@@ -224,11 +369,12 @@
 
     </LinearLayout>
 
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:gravity="center">
 
         <Button
@@ -247,6 +393,18 @@
             android:textAllCaps="false"
             android:textSize="15dp"/>
     </LinearLayout>
+-->
+
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_marginTop="10dp"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:background="#E0FCFA"
+            android:textAllCaps="false"
+            android:textSize="15dp"
+            android:text="Return" />
 
 
-</LinearLayout>
+    </LinearLayout>

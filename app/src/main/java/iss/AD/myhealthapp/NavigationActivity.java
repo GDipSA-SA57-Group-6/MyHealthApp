@@ -47,6 +47,16 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
+        Button mBtnReturn = findViewById(R.id.btnReturn);
+        mBtnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start CreateUserActivity when the button is clicked
+                Intent intent = new Intent(NavigationActivity.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
+
         btnHeartDisease = findViewById(R.id.btnHeartDisease);
         btnDiabetes = findViewById(R.id.btnDiabetes);
 

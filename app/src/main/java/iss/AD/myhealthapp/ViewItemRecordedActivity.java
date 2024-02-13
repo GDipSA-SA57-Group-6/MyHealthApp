@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,7 +124,8 @@ public class ViewItemRecordedActivity extends AppCompatActivity{
         return classUserId;
     }
     private void calculate(HashMap<Food, Integer> receivedData) {
-        LocalDate currentDate = LocalDate.now();
+        ZoneId zoneId = ZoneId.of("Asia/Singapore");
+        LocalDate currentDate = LocalDate.now(zoneId);
         Submission mySubmission = new Submission();
         mySubmission.userId = getClassUserId();
         mySubmission.date = currentDate ;
@@ -189,10 +191,12 @@ public class ViewItemRecordedActivity extends AppCompatActivity{
                         // Show Toast
                         Toast.makeText(ViewItemRecordedActivity.this, "Add to Calculate successfully", Toast.LENGTH_LONG).show();
 
-                        // Navigate back to LoginPage
-//                                Intent intent = new Intent(AddCustomizedItemActivity.this, LoginPage.class);
-//                                startActivity(intent);
-//                                finish(); // Close the current activity to prevent going back to it with the back button
+                        // Navigate back to Dashboard
+                        /*
+                        Intent intent = new Intent(ViewItemRecordedActivity.this, Dashboard.class);
+                        startActivity(intent);
+                        finish(); // Close the current activity to prevent going back to it with the back button
+                        */
                     });
                 } else {
                     Log.e("Add to Calculate", "Unexpected response code: " + response.code());

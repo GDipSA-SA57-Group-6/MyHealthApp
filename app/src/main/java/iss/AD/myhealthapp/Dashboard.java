@@ -39,6 +39,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -103,7 +106,7 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
- // Initialize the Activity Result Launcher
+        // Initialize the Activity Result Launcher
         imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
@@ -345,40 +348,41 @@ public class Dashboard extends AppCompatActivity {
         ArrayList<String> labels = new ArrayList<>();
         ArrayList<String> formattedDates = new ArrayList<>();
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        // Use java.time instead of Calendar and SimpleDateFormat
+        LocalDate currentDate = LocalDate.now(ZoneId.of("Asia/Singapore"));
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault());
 
         // Add the current date
-        labels.add(sdf.format(calendar.getTime()));
+        labels.add(currentDate.format(sdf));
         formattedDates.add("Today");
 
         // Add the past 6 days in reverse order
         for (int i = 6; i > 0; i--) {
             // Move to the previous day
-            calendar.add(Calendar.DAY_OF_YEAR, -1);
+            currentDate = currentDate.minusDays(1);
 
-            String date = sdf.format(calendar.getTime());
+            String date = currentDate.format(sdf);
             labels.add(date);
 
             // Format and add date in MM-dd format
-            SimpleDateFormat mmddFormat = new SimpleDateFormat("MM-dd", Locale.getDefault());
-            formattedDates.add(mmddFormat.format(calendar.getTime()));
+            DateTimeFormatter mmddFormat = DateTimeFormatter.ofPattern("MM-dd", Locale.getDefault());
+            formattedDates.add(currentDate.format(mmddFormat));
         }
 
         // Sort labels in ascending order
         Collections.sort(labels);
-    // Reverse the order of formattedDates
+        // Reverse the order of formattedDates
         Collections.reverse(formattedDates);
 
         // Iterate over the labels and find the corresponding entry in the data
         for (int i = 0; i < labels.size(); i++) {
-            String currentDate = labels.get(i);
-            JSONObject entry = findEntryByDate(data, currentDate);
+            String currentDateStr = labels.get(i);
+            JSONObject entry = findEntryByDate(data, currentDateStr);
 
             int caloriesBurnt = (entry != null) ? entry.optInt("caloriesBurnt", 0) : 0;
             entries.add(new BarEntry(i, caloriesBurnt));
 
-            Log.d("processFetchedData", "Entry " + i + ": " + caloriesBurnt + ", Date: " + currentDate);
+            Log.d("processFetchedData", "Entry " + i + ": " + caloriesBurnt + ", Date: " + currentDateStr);
         }
 
         Log.d("processFetchedData", "Received data: " + data.toString());

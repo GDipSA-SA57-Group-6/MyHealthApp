@@ -32,15 +32,16 @@
         android:id="@+id/buttonPickImage"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="Pick Image"
+        android:text="Update image"
         android:textAllCaps="false"
         android:textSize="10sp"
+        android:background="#E0FCFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203" />
+        app:layout_constraintVertical_bias="0.183" />
 
     <TextView
         android:id="@+id/dashboardText"
@@ -91,11 +92,12 @@
 
     <Button
         android:id="@+id/btnGetUser"
-        android:layout_width="108dp"
+        android:layout_width="98dp"
         android:layout_height="38dp"
         android:text="My Details"
         android:textAllCaps="false"
         android:textSize="15dp"
+        android:background="#E0FCFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.57"
@@ -105,84 +107,19 @@
 
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="108dp"
+        android:layout_width="98dp"
         android:layout_height="38dp"
         android:text="Logout"
         android:textAllCaps="false"
         android:textSize="15dp"
+        android:background="#E0FCFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.17" />
-    <Button
-        android:id="@+id/btnDiseasePrediction"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Disease Prediction"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGetUser"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-
-    <Button
-        android:id="@+id/btnSetHealthTarget"
-        android:layout_width="150dp"
-        android:layout_height="38dp"
-        android:text="Set Health Target"
-        android:textAllCaps="false"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.30" />
-
-    <Button
-        android:id="@+id/btnRecordExercise"
-        android:layout_width="150dp"
-        android:layout_height="38dp"
-        android:text="Record Exercise"
-        android:textAllCaps="false"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.30" />
-
-
-    <Button
-        android:id="@+id/btnRecordFoodConsumption"
-        android:layout_width="150dp"
-        android:layout_height="38dp"
-        android:text="Record Food"
-        android:textAllCaps="false"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.40" />
-
-    <Button
-        android:id="@+id/btnDailySummary"
-        android:layout_width="150dp"
-        android:layout_height="38dp"
-        android:text="Daily Summary"
-        android:textAllCaps="false"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.40" />
 
 
 <!--    <ImageView-->
@@ -196,25 +133,148 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@id/btnDailySummary" />-->
 
+
     <Button
         android:id="@+id/btnVideoPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         android:text="Watch Video"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnDailySummary" />
+        app:layout_constraintTop_toBottomOf="@id/btnLogout" />
+
+    <TextView
+        android:id="@+id/textViewOccasional"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="0dp"
+        android:paddingLeft="10dp"
+        android:background="#FFE7F7"
+        android:text="Boost Up My Health"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.380"
+        />
+
+    <Button
+        android:id="@+id/btnSetHealthTarget"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:text="Set Health Target"
+        android:textAllCaps="false"
+        android:textSize="15dp"
+        android:background="#FFA7E0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.40" />
+
+    <Button
+        android:id="@+id/btnDiseasePrediction"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:text="Disease Prediction"
+        android:textAllCaps="false"
+        android:background="#FFA7E0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3850"/>
+
+
+        <TextView
+            android:id="@+id/textViewDaily"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="0dp"
+            android:paddingLeft="10dp"
+            android:background="#FFF8DC"
+            android:text="Live Healthy Life Everyday"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.306"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.550"
+            />
+
+        <Button
+            android:id="@+id/btnDailySummary"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:text="Daily Summary"
+            android:textAllCaps="false"
+            android:textSize="15dp"
+            android:background="#F3FD5C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.550" />
+
+        <Button
+            android:id="@+id/btnRecordFoodConsumption"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:text="Record Food"
+            android:textAllCaps="false"
+            android:textSize="15dp"
+            android:background="#F3FD5C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.550" />
+
+
+        <Button
+            android:id="@+id/btnRecordExercise"
+            android:layout_width="120dp"
+            android:layout_height="38dp"
+            android:text="Record Exercise"
+            android:textAllCaps="false"
+            android:textSize="15dp"
+            android:background="#F3FD5C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.550" />
+
+
 
     <TextView
         android:id="@+id/past7daysTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_marginTop="2dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginBottom="2dp"
+        android:paddingStart="10dp"
         android:text="Calories Burned Through Exercise in the Past 7 Days \n(Including Today)"
         android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="#F3FCE0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.206"
@@ -226,16 +286,13 @@
         android:id="@+id/barChartCaloriesBurnt"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:background="#F3FCE0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-
-
-
+        app:layout_constraintVertical_bias="0.96" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

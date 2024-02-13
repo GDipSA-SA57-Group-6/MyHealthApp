@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -187,7 +188,8 @@ public class RecordExercise extends AppCompatActivity {
             "caloriesBurnt": 2000
         }
         */
-        LocalDate exerciseDate = LocalDate.now();
+        ZoneId zoneId = ZoneId.of("Asia/Singapore");
+        LocalDate exerciseDate = LocalDate.now(zoneId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         JSONObject jsonBody = new JSONObject();

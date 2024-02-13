@@ -29,8 +29,8 @@ public class NutritionTracker {
     }
 
     public void trackNutrition(Context context) {
-        textViewTarget.setText("Target: " + target + " g");
-        textViewStatus.setText("Current Status: " + currentStatus + " g");
+        textViewTarget.setText("need: " + target + " g");
+        textViewStatus.setText("intake: " + currentStatus + " g");
 
         LayerDrawable layerDrawable = (LayerDrawable) progressBar.getProgressDrawable();
         int progressLayerIndex = 1;
@@ -41,11 +41,11 @@ public class NutritionTracker {
         if (currentStatus > target) {
             progressColor = ContextCompat.getColor(context, R.color.red);
             int diff = currentStatus - target;
-            statusText = "Over Target: " + diff + " g";
+            statusText = "Over by: " + diff + " g";
         } else {
             progressColor = ContextCompat.getColor(context, android.R.color.holo_green_light);
             int diff = target - currentStatus;
-            statusText = "Need more: " + diff + " g";
+            statusText = "Require: " + diff + " g";
         }
 
         layerDrawable.getDrawable(progressLayerIndex).setTint(progressColor);

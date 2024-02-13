@@ -139,6 +139,16 @@ public class SelectActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+        Button btnReturn = findViewById(R.id.btnReturn);
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start CreateUserActivity when the button is clicked
+                Intent intent = new Intent(SelectActivity.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
+
 /*
         ListView listView = findViewById(R.id.listView);
         if (listView != null) {
