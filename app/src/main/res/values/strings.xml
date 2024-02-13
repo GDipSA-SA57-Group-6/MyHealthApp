@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyHealthApp</string>
+    <string name="local_host">10.0.2.2</string>
 </resources>

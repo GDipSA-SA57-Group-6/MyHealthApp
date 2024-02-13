@@ -87,10 +87,11 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
         }
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonBody.toString());
+        String local_host = getResources().getString(R.string.local_host);
 
         // Build the POST request
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/food")
+                .url("http://" + local_host + ":8080/api/food")
                 .post(requestBody)
                 .build();
 

@@ -81,7 +81,8 @@ public class NavigationActivity extends AppCompatActivity {
         if (userId == -1) {
             return;
         }
-        String url = "http://192.168.1.98:8080/api/heartDiseasePredictionsLastSevenDays?userId=" + userId;
+        String local_host = getResources().getString(R.string.local_host);
+        String url = "http://" + local_host + ":8080/api/heartDiseasePredictionsLastSevenDays?userId=" + userId;
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
@@ -134,7 +135,8 @@ public class NavigationActivity extends AppCompatActivity {
         if (userId == -1) {
             return;
         }
-        String url = "http://192.168.1.98:8080/api/diabetesPredictionsLastSevenDays?userId=" + userId;
+        String local_host = getResources().getString(R.string.local_host);
+        String url = "http://" + local_host + ":8080/api/diabetesPredictionsLastSevenDays?userId=" + userId;
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)

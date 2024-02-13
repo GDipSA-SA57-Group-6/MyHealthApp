@@ -72,8 +72,8 @@ public class GetUser extends AppCompatActivity {
                 getSharedPreferences("user_credentials", MODE_PRIVATE);
         Integer userId = pref.getInt("userId",-1);
 
-
-        String apiUrl = "http://192.168.1.98:8080/api/user/get/" + String.valueOf(userId);
+        String local_host = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + local_host + ":8080/api/user/get/" + String.valueOf(userId);
 
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -194,8 +194,8 @@ public class GetUser extends AppCompatActivity {
         }
 
         RequestBody requestBody = RequestBody.create(jsonBody.toString(), MediaType.parse("application/json"));
-
-        String apiUrl = "http://192.168.1.98:8080/api/user/delete/" + userId;
+        String local_host = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + local_host + ":8080/api/user/delete/" + userId;
 
         Request request = new Request.Builder()
                 .url(apiUrl)

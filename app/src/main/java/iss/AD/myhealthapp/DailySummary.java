@@ -157,7 +157,8 @@ public class DailySummary extends AppCompatActivity {
 
     // CountDownLatch #1
     public void getGenderTargetCaloriesByUserId(int userId, CountDownLatch latch){
-        String apiUrl = "http://192.168.1.98:8080/api/user/get/" + userId;
+        String local_host = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + local_host + ":8080/api/user/get/" + userId;
 
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -212,7 +213,8 @@ public class DailySummary extends AppCompatActivity {
     }
 
     public void getCaloriesBurntTodayByUserId(int userId, CountDownLatch latch){
-        String apiUrl = "http://192.168.1.98:8080/api/daily-exercise/calories-burnt-today/" + userId;
+        String local_host = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + local_host + ":8080/api/daily-exercise/calories-burnt-today/" + userId;
 
         Request request = new Request.Builder()
                 .url(apiUrl)

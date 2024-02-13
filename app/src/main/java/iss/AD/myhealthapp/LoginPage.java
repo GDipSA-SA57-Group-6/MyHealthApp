@@ -2,6 +2,7 @@ package iss.AD.myhealthapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -87,9 +88,10 @@ public class LoginPage extends AppCompatActivity {
 
         RequestBody requestBody = RequestBody.create(jsonBody.toString(), MediaType.parse("application/json"));
 
+        String local_host = getResources().getString(R.string.local_host);
         // Create the login request
         Request request = new Request.Builder()
-                .url("http://192.168.1.98:8080/api/login")
+                .url("http://" + local_host + ":8080/api/login")
                 .post(requestBody)
                 .build();
 

@@ -71,10 +71,10 @@ public class SelectActivity extends AppCompatActivity implements AdapterView.OnI
 
 
         OkHttpClient client = new OkHttpClient();
-
+        String local_host = getResources().getString(R.string.local_host);
 
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/food")
+                .url("http://" + local_host + ":8080/api/food")
                 .build();
 
         client.newCall(request).enqueue(new Callback() {

@@ -188,10 +188,10 @@ public class CreateUser extends AppCompatActivity {
         }
 
         RequestBody requestBody = RequestBody.create(jsonBody.toString(), MediaType.parse("application/json"));
-
+        String local_host = getResources().getString(R.string.local_host);
         // Build the POST request
         Request request = new Request.Builder()
-                .url("http://192.168.1.98:8080/api/user/create")
+                .url("http://" + local_host + ":8080/api/user/create")
                 .post(requestBody)
                 .build();
 

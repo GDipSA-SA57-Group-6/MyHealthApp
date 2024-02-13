@@ -170,10 +170,10 @@ public class ViewItemRecordedActivity extends AppCompatActivity{
 
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
-
+        String local_host = getResources().getString(R.string.local_host);
         // Build the POST request
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/submission")
+                .url("http://" + local_host + ":8080/api/submission")
                 .post(requestBody)
                 .build();
 

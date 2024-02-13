@@ -36,9 +36,10 @@ public class VideoPageActivity extends AppCompatActivity {
         adapter = new VideoAdapter(this, videoList);
         recyclerView.setAdapter(adapter);
 
+        String local_host = getResources().getString(R.string.local_host);
         // 创建Retrofit实例
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080")
+                .baseUrl("http://" + local_host + ":8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

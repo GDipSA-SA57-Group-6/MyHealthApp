@@ -95,8 +95,8 @@ public class UpdateUser extends AppCompatActivity {
 
 
     private void retrieveUserDetails(int userId) {
-
-        String apiUrl = "http://192.168.1.98:8080/api/user/get/" + userId;
+        String local_host = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + local_host + ":8080/api/user/get/" + userId;
 
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -237,10 +237,11 @@ public class UpdateUser extends AppCompatActivity {
         }
 
         RequestBody requestBody = RequestBody.create(jsonBody.toString(), MediaType.parse("application/json"));
+        String local_host = getResources().getString(R.string.local_host);
 
         // Build the PUT request
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/user/update/" + userId)
+                .url("http://" + local_host + ":8080/api/user/update/" + userId)
                 .post(requestBody)
                 .build();
 

@@ -160,9 +160,9 @@ public class DiabetesMainActivity extends AppCompatActivity {
         }
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
-
+        String local_host = getResources().getString(R.string.local_host);
         Request request = new Request.Builder()
-                .url("http://192.168.1.98:8080/api/diabetesData")
+                .url("http://" + local_host + ":8080/api/diabetesData")
                 .post(body)
                 .build();
 
@@ -193,7 +193,8 @@ public class DiabetesMainActivity extends AppCompatActivity {
         return pref.getInt("userId", -1); // Returns -1 if "userId" doesn't exist
     }
     private void fetchUserInfo(Integer userId) {
-        String apiUrl = "http://192.168.1.98:8080/api/user/get/" + String.valueOf(userId);
+        String local_host = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + local_host + ":8080/api/user/get/" + String.valueOf(userId);
 
         Request request = new Request.Builder()
                 .url(apiUrl)

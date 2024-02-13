@@ -297,8 +297,8 @@ public class Dashboard extends AppCompatActivity {
     private void fetchCaloriesBurntDataInBackground(int userId, CountDownLatch latch) {
         new Thread(() -> {
             OkHttpClient client = new OkHttpClient();
-
-            String apiUrl = "http://192.168.1.98:8080/api/daily-exercise/last-7-days/" + userId;
+            String local_host = getResources().getString(R.string.local_host);
+            String apiUrl = "http://" + local_host + ":8080/api/daily-exercise/last-7-days/" + userId;
 
             Request request = new Request.Builder()
                     .url(apiUrl)
