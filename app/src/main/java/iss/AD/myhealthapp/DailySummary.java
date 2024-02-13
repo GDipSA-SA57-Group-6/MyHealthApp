@@ -44,8 +44,9 @@ public class DailySummary extends AppCompatActivity {
     private TextView textViewNumFoodIntake, textViewNumExerciseCaloriesBurned,textViewNumCompare,textViewNumCaloriesRequired;
 
     private int progressColor;
-    private int caloriesRequired,exerciseCaloriesBurned;
+    private int caloriesRequired,exerciseCaloriesBurned,dailyCarbSum,dailyFatSum,dailyCalSum,dailyProteinSum;
     private String genderInClass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +78,13 @@ public class DailySummary extends AppCompatActivity {
                 getSharedPreferences("user_credentials", MODE_PRIVATE);
         int userId = pref.getInt("userId",-1);
 
-        CountDownLatch latch = new CountDownLatch(2); // Number of asynchronous tasks
+        CountDownLatch latch = new CountDownLatch(3); // Number of asynchronous tasks
 
         getGenderTargetCaloriesByUserId(userId, latch);
 
         //Calories
         getCaloriesBurntTodayByUserId(userId, latch);
-
+        getDailySubmissionByUserId(userId, latch);
 
 
         textViewNumFoodIntake = findViewById(R.id.textViewNumFoodIntake);
@@ -154,6 +155,20 @@ public class DailySummary extends AppCompatActivity {
         return exerciseCaloriesBurned;
     }
 
+    public void saveToClassProteinSumByUserId(int dailyProteinSum) {
+        this.dailyProteinSum = dailyProteinSum;
+    }
+
+    public int getDailyProteinSum() {
+        return dailyProteinSum;
+    }
+
+    /*
+    saveToClassCarbSumByUserId(carbSum);
+    saveToClassFatSumByUserId(fatSum);
+    saveToClassCalSumByUserId(calSum);
+    dailyCarbSum,dailyFatSum,dailyCalSum
+     */
 
     // CountDownLatch #1
     public void getGenderTargetCaloriesByUserId(int userId, CountDownLatch latch){
@@ -255,6 +270,58 @@ public class DailySummary extends AppCompatActivity {
         });
     }
 
+    public void getDailySubmissionByUserId(int userId, CountDownLatch latch) {
+        String localHost = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + localHost + ":8080/api/get-submission-by-userid/" + userId;
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(apiUrl)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Handle failure (e.g., network issues)
+                e.printStackTrace();
+                latch.countDown(); // Signal that the operation is complete
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    if (response.isSuccessful()) {
+                        String responseBody = response.body().string();
+                        // Handle the JSON response
+                        System.out.println(responseBody);
+
+                        //Parse the JSON response if needed
+                        JSONObject jsonObject = new JSONObject(responseBody);
+                        int carbSum = jsonObject.getInt("carb_sum");
+                        int fatSum = jsonObject.getInt("fat_sum");
+                        int calSum = jsonObject.getInt("cal_sum");
+                        int proteinSum = jsonObject.getInt("protein_sum");
+
+                        //saveToClassCarbSumByUserId(carbSum);
+                        //saveToClassFatSumByUserId(fatSum);
+                        //saveToClassCalSumByUserId(calSum);
+                        saveToClassProteinSumByUserId(proteinSum);
+                        latch.countDown();
+
+                    } else {
+                        // Handle unsuccessful response (e.g., non-2xx status code)
+                        System.out.println("Unsuccessful response: " + response.code());
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    response.close();
+                    latch.countDown(); // Signal that the operation is complete
+                }
+            }
+        });
+    }
 
 
 
@@ -267,7 +334,7 @@ public class DailySummary extends AppCompatActivity {
             int proteinTarget = proteinTargetBasedOnUserGender(gender);
 
             proteinTracker.setTarget(proteinTarget);
-            proteinTracker.setCurrentStatus(30);//LF: to update this number
+            proteinTracker.setCurrentStatus(getDailyProteinSum());//LF: to update this number
             proteinTracker.trackNutrition(this);
 
             //Calories
