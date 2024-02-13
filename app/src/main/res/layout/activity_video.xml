@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/adImageView"
+        android:layout_width="331dp"
+        android:layout_height="553dp"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="66dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/adDescriptionTextView"
+        android:layout_width="315dp"
+        android:layout_height="142dp"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="470dp"
+        tools:ignore="MissingConstraints" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
