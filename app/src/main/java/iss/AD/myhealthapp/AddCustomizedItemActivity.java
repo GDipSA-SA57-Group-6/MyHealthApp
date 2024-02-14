@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,10 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_customized_item);
+
+        final SharedPreferences pref =
+                getSharedPreferences("user_credentials", MODE_PRIVATE);
+        int userId = pref.getInt("userId",-1);
 
         mcustomize_nameOfFood = findViewById(R.id.customize_nameOfFood);
         mcustomize_quantity = findViewById(R.id.customize_quantity);
