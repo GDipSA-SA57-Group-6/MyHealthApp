@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import android.widget.Toast;
+import android.util.Log;
+
 
 
 import java.util.List;
@@ -55,7 +57,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         Glide.with(context).load(video.getImageUrl()).into(holder.imageView);
         holder.textViewDescription.setText(video.getDescription());
 
-        String videoUrl = video.getVideoUrl();
+        String videoUrl = video.getVidUrl();
+
+        Log.d("VideoAdapter", "Video URL at position " + position + ": " + videoUrl);
+
         if (videoUrl != null && !videoUrl.isEmpty()) {
             holder.imageView.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl));

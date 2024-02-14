@@ -59,21 +59,19 @@ public class VideoPageActivity extends AppCompatActivity {
                 .build();
 
         apiService = retrofit.create(VideoApiService.class);
-
         // 从SharedPreferences获取用户ID
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = getSharedPreferences("user_credentials", MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1); // 默认值为-1表示未找到
         Log.d("VideoPageActivity", "User ID from SharedPreferences: " + userId);
 
         if (userId == -1) {
             // 用户未登录，显示提示并返回
-            Toast.makeText(this, "Please log in to continue", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "No recommend videos.", Toast.LENGTH_LONG).show();
             finish(); // 结束当前Activity，可能需要跳转到登录页面
         } else {
             // 用户已登录，根据用户ID获取推荐视频
             fetchRecommendedVideos(String.valueOf(userId));
         }
-
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -83,33 +81,6 @@ public class VideoPageActivity extends AppCompatActivity {
         }, 3000);
 
     }
-
-//    private void fetchDataFromApi(String local_host) {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://" + local_host + ":8080/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        VideoApiService apiService = retrofit.create(VideoApiService.class);
-//
-//        // 调用API
-//        Call<List<VideoInfo>> call = apiService.getVideos();
-//        call.enqueue(new Callback<List<VideoInfo>>() {
-//            @Override
-//            public void onResponse(Call<List<VideoInfo>> call, Response<List<VideoInfo>> response) {
-//                if (response.isSuccessful()) {
-//                    videoList.clear();
-//                    videoList.addAll(response.body());
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<VideoInfo>> call, Throwable t) {
-//                // 处理请求失败
-//            }
-//        });
-//    }
 
     private void fetchRecommendedVideos(String userId) {
         Call<Integer> recommendCall = apiService.recommendVideo(Integer.parseInt(userId));
