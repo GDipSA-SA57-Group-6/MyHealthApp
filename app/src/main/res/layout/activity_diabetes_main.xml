@@ -7,13 +7,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
+
+        <TextView
+            android:id="@+id/titleDiabetesPrediction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diabetes Prediction"
+            android:textSize="24sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"/>
+
         <TextView
             android:id="@+id/dateDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Current Date"
             android:textSize="16sp"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/titleDiabetesPrediction"
             android:layout_centerHorizontal="true"/>
 
         <!-- HighBP Label -->
@@ -201,22 +212,34 @@
             android:gravity="center_horizontal">
 
             <Button
-                android:id="@+id/submitBtn"
+                android:id="@+id/backToMainBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Predict" />
+                android:background="#E0FCFA"
+                android:textAllCaps="false"
+                android:layout_marginLeft="10dp"
+                android:text="Back to Main" />
+
 
             <Button
                 android:id="@+id/clearBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#E0FCFA"
+                android:textAllCaps="false"
+                android:layout_marginLeft="10dp"
                 android:text="Clear" />
 
             <Button
-                android:id="@+id/backToMainBtn"
+                android:id="@+id/submitBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Back to Main" />
+                android:background="#E0FCFA"
+                android:textAllCaps="false"
+                android:layout_marginLeft="10dp"
+                android:text="Predict" />
+
+
         </LinearLayout>
 
 

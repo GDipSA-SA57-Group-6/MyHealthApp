@@ -10,11 +10,42 @@
         android:gravity="center"
         android:padding="16dp">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:text="Disease Prediction"
+            android:textStyle="bold"
+            android:layout_marginBottom="0dp"/>
+
+        <TextView
+            android:id="@+id/updateUserDesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:textSize="12sp"
+            android:gravity="left"
+            android:text="Prediction provided is for informational purposes only and should not be considered a substitute for professional medical advice or treatment."
+            android:layout_marginBottom="1dp"/>
+
+        <LinearLayout
+            android:id="@+id/linTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
         <Button
             android:id="@+id/btnHeartDisease"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="0dp"
+            android:background="#FFF8DC"
+            android:textAllCaps="false"
+            android:layout_weight="1"
             android:text="Heart Disease Prediction" />
 
         <Button
@@ -22,7 +53,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Diabetes Prediction"
-            android:layout_marginBottom="20dp"/>
+            android:background="#FFF8DC"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="0dp"/>
+
+        </LinearLayout>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/heartDiseaseChart"
@@ -36,6 +73,54 @@
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
+        <TextView
+            android:id="@+id/promptText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/diabetesChart"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="According to your last prediction,"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/heartDiseasePredictionResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/promptText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Heart Disease Prediction Result"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/diabetesPredictionResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heartDiseasePredictionResult"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Diabetes Prediction Result"
+            android:textSize="16sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/videoRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/diabetesPredictionResult"
+            android:layout_marginTop="8dp"/>
+
+
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_marginTop="10dp"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:background="#E0FCFA"
+            android:textAllCaps="false"
+            android:textSize="15dp"
+            android:text="Return" />
 
     </LinearLayout>
+
+
 </ScrollView>

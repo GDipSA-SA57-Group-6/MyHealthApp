@@ -8,78 +8,208 @@
     android:padding="16dp"
     tools:layout_editor_absoluteY="25dp">
 
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="25dp"
-        ></TextView>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="create your customized food record here"
-        android:textSize="40dp"
-        android:padding="30pt"
-        android:paddingTop="5pt"
-
-        ></TextView>
-
-    <EditText
-        android:id="@+id/customize_nameOfFood"
+        android:id="@+id/textViewAddCustomizedFood"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter name of food"
-        android:inputType="text" />
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Create My Customized Food"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/customize_quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Unit_description"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/customize_calorie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Calorie"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/customize_protein"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Protein"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/customize_fat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Fat"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/customize_carbohydrates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Carbohydrates"
-        android:inputType="text" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="46dp"
+        tools:srcCompat="@tools:sample/avatars"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        />
 
     <Button
-        android:id="@+id/AddToCountBtn"
+        android:id="@+id/buttonPickImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create"
-        ></Button>
+        android:layout_height="30dp"
+        android:text="Upload picture"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:textAllCaps="false"
+        android:textSize="10sp"
+        android:background="#E0FCFA" />
 
-    <Button
-        android:id="@+id/returnBtn"
-        android:layout_width="wrap_content"
+    <!-- Name of Food -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Return"
-        android:textSize="15sp" />
+        android:orientation="horizontal"
+        android:gravity="start|center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name of Food: "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/customize_nameOfFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter name of food"
+            android:textAllCaps="false"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- Quantity -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unit Description: "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/customize_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Unit_description"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- Calorie -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calorie: "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/customize_calorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Calorie"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- Protein -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Protein: "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/customize_protein"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Protein"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- Fat -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fats: "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/customize_fat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Fat"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <!-- Fat -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carbohydrates: "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/customize_carbohydrates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Carbohydrates"
+            android:inputType="text" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linTop"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        >
+
+        <Button
+            android:id="@+id/returnBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Return"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:background="#E0FCFA"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/AddToCountBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Create"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:background="#E0FCFA"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

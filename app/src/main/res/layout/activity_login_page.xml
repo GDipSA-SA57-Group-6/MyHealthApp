@@ -54,6 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:textAllCaps="false"
+            android:background="#E0FCFA"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="30dp"/>
 
@@ -76,10 +78,11 @@
 
         <Button
             android:id="@+id/btnCreate"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Create New Account"
             android:textAllCaps="false"
+            android:background="#E0FCFA"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="30dp"/>
 

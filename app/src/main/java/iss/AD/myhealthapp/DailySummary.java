@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 
 import okhttp3.Call;
@@ -33,9 +34,8 @@ import okhttp3.Request;
 
 public class DailySummary extends AppCompatActivity {
     OkHttpClient client;
-    Button mBtnSetHealthTarget, mBtnRecordExercise;
-    private NutritionTracker proteinTracker;
-    //to add: fatsTracker, carbsTracker;
+    //Button mBtnSetHealthTarget, mBtnRecordExercise;
+    private NutritionTracker proteinTracker, fatsTracker, carbsTracker;
 
     //Calories
     private ProgressBar progressBar;
@@ -44,15 +44,17 @@ public class DailySummary extends AppCompatActivity {
     private TextView textViewNumFoodIntake, textViewNumExerciseCaloriesBurned,textViewNumCompare,textViewNumCaloriesRequired;
 
     private int progressColor;
-    private int caloriesRequired,exerciseCaloriesBurned;
+    private int caloriesRequired,exerciseCaloriesBurned,dailyCarbsSum,dailyFatsSum,dailyCalSum,dailyProteinSum;
     private String genderInClass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_summary);
 
-        mBtnSetHealthTarget = findViewById(R.id.btnSetHealthTarget);
+        /*
+        Button mBtnSetHealthTarget = findViewById(R.id.btnSetHealthTarget);
         mBtnSetHealthTarget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +63,7 @@ public class DailySummary extends AppCompatActivity {
             }
         });
 
-        mBtnRecordExercise = findViewById(R.id.btnRecordExercise);
+        Button mBtnRecordExercise = findViewById(R.id.btnRecordExercise);
         mBtnRecordExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,19 +73,30 @@ public class DailySummary extends AppCompatActivity {
         });
 
 
+        Button mBtnRecordFoodConsumption = findViewById(R.id.btnRecordFoodConsumption);
+        mBtnRecordFoodConsumption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DailySummary.this, SelectActivity.class));
+            }
+        });
+        */
+
+        Button mBtnReturn = findViewById(R.id.btnReturn);
+        mBtnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start CreateUserActivity when the button is clicked
+                Intent intent = new Intent(DailySummary.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
+
         client = new OkHttpClient();
 
         final SharedPreferences pref =
                 getSharedPreferences("user_credentials", MODE_PRIVATE);
         int userId = pref.getInt("userId",-1);
-
-        CountDownLatch latch = new CountDownLatch(2); // Number of asynchronous tasks
-
-        getGenderTargetCaloriesByUserId(userId, latch);
-
-        //Calories
-        getCaloriesBurntTodayByUserId(userId, latch);
-
 
 
         textViewNumFoodIntake = findViewById(R.id.textViewNumFoodIntake);
@@ -100,7 +113,6 @@ public class DailySummary extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         textViewSuggestion = findViewById(R.id.textViewSuggestion);
 
-
         // Initialize NutritionTracker instance
         proteinTracker = new NutritionTracker(
                 findViewById(R.id.proteinProgressBar),
@@ -109,16 +121,44 @@ public class DailySummary extends AppCompatActivity {
                 findViewById(R.id.proteinTextViewDifferent)
         );
 
+        fatsTracker = new NutritionTracker(
+                findViewById(R.id.fatsProgressBar),
+                findViewById(R.id.fatsTextViewTarget),
+                findViewById(R.id.fatsTextViewStatus),
+                findViewById(R.id.fatsTextViewDifferent)
+        );
 
-        // Use await to wait for all requests to complete
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        carbsTracker = new NutritionTracker(
+                findViewById(R.id.carbsProgressBar),
+                findViewById(R.id.carbsTextViewTarget),
+                findViewById(R.id.carbsTextViewStatus),
+                findViewById(R.id.carbsTextViewDifferent)
+        );
 
-        // Update UI after all tasks are completed
-        updateUI();
+
+        // CountDownLatch #1
+        CompletableFuture<Void> firstTask = getGenderTargetCaloriesByUserId(userId);
+
+        firstTask.thenRun(() -> {
+            // This code will run after the completion of the first task
+            CountDownLatch latch = new CountDownLatch(2); // Number of asynchronous tasks after the first one
+
+            // Execute the second task
+            getCaloriesBurntTodayByUserId(userId, latch);//set this as second task
+
+            // Execute the third task
+            getDailySubmissionByUserId(userId, latch);
+
+            // Use await to wait for all requests to complete
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            updateUI();
+
+        });
 
 
     }
@@ -154,9 +194,39 @@ public class DailySummary extends AppCompatActivity {
         return exerciseCaloriesBurned;
     }
 
+    public void saveToClassProteinSumByUserId(int dailyProteinSum) {
+        this.dailyProteinSum = dailyProteinSum;
+    }
+
+    public int getDailyProteinSum() {
+        return dailyProteinSum;
+    }
+
+    public void saveToClassFatsSumByUserId(int dailyFatsSum) {
+        this.dailyFatsSum = dailyFatsSum;
+    }
+
+    public int getDailyFatsSum() {
+        return dailyFatsSum;
+    }
+
+    public void saveToClassCarbsSumByUserId(int dailyCarbsSum) {
+        this.dailyCarbsSum = dailyCarbsSum;
+    }
+
+    public int getDailyCarbsSum() { return dailyCarbsSum; }
+
+    public void saveToClassCalSumByUserId(int dailyCalSum) {
+        this.dailyCalSum = dailyCalSum;
+    }
+
+    public int getDailyCalSum() { return dailyCalSum; }
+
+
 
     // CountDownLatch #1
-    public void getGenderTargetCaloriesByUserId(int userId, CountDownLatch latch){
+    public CompletableFuture<Void> getGenderTargetCaloriesByUserId(int userId){
+        CompletableFuture<Void> future = new CompletableFuture<>();
         String local_host = getResources().getString(R.string.local_host);
         String apiUrl = "http://" + local_host + ":8080/api/user/get/" + userId;
 
@@ -169,7 +239,7 @@ public class DailySummary extends AppCompatActivity {
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
                 Log.e("getGenderTargetCaloriesByUserId", "Network request failed: " + e.getMessage());
-                latch.countDown();
+                future.completeExceptionally(e);
             }
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
@@ -197,19 +267,21 @@ public class DailySummary extends AppCompatActivity {
 
                         saveToClassGenderByUserId(gender);
                         saveToClassCaloriesRequiredByUserId(targetCalories);
-                        latch.countDown();
+                        future.complete(null);
+
 
                     }catch (JSONException e) {
                         e.printStackTrace();
                         Log.e("getGenderTargetCaloriesByUserId", "Error parsing JSON response");
-                        latch.countDown();
+                        future.completeExceptionally(e);
                     }
                 } else {
                     Log.e("getGenderTargetCaloriesByUserId", "Unexpected response code: " + response.code());
-                    latch.countDown();
+                    future.completeExceptionally(new RuntimeException("Unexpected response code: " + response.code()));
                 }
             }
         });
+        return future;
     }
 
     public void getCaloriesBurntTodayByUserId(int userId, CountDownLatch latch){
@@ -255,6 +327,58 @@ public class DailySummary extends AppCompatActivity {
         });
     }
 
+    public void getDailySubmissionByUserId(int userId, CountDownLatch latch) {
+        String localHost = getResources().getString(R.string.local_host);
+        String apiUrl = "http://" + localHost + ":8080/api/get-submission-by-userid/" + userId;
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(apiUrl)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Handle failure (e.g., network issues)
+                e.printStackTrace();
+                latch.countDown(); // Signal that the operation is complete
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    if (response.isSuccessful()) {
+                        String responseBody = response.body().string();
+                        // Handle the JSON response
+                        System.out.println(responseBody);
+
+                        //Parse the JSON response if needed
+                        JSONObject jsonObject = new JSONObject(responseBody);
+                        int carbSum = jsonObject.getInt("carb_sum");
+                        int fatSum = jsonObject.getInt("fat_sum");
+                        int calSum = jsonObject.getInt("cal_sum");
+                        int proteinSum = jsonObject.getInt("protein_sum");
+
+                        saveToClassCarbsSumByUserId(carbSum);
+                        saveToClassFatsSumByUserId(fatSum);
+                        saveToClassCalSumByUserId(calSum);
+                        saveToClassProteinSumByUserId(proteinSum);
+                        latch.countDown();
+
+                    } else {
+                        // Handle unsuccessful response (e.g., non-2xx status code)
+                        System.out.println("Unsuccessful response: " + response.code());
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    response.close();
+                    latch.countDown(); // Signal that the operation is complete
+                }
+            }
+        });
+    }
 
 
 
@@ -265,14 +389,24 @@ public class DailySummary extends AppCompatActivity {
             //Nutrition
             String gender = getGenderInClass();
             int proteinTarget = proteinTargetBasedOnUserGender(gender);
+            int fatsTarget = fatsTargetBasedOnUserGender(gender);
+            int carbsTarget = carbsTargetBasedOnUserGender(gender);
 
             proteinTracker.setTarget(proteinTarget);
-            proteinTracker.setCurrentStatus(30);//LF: to update this number
+            proteinTracker.setCurrentStatus(getDailyProteinSum());
             proteinTracker.trackNutrition(this);
+
+            fatsTracker.setTarget(fatsTarget);
+            fatsTracker.setCurrentStatus(getDailyFatsSum());
+            fatsTracker.trackNutrition(this);
+
+            carbsTracker.setTarget(carbsTarget);
+            carbsTracker.setCurrentStatus(getDailyCarbsSum());
+            carbsTracker.trackNutrition(this);
 
             //Calories
             int caloriesRequired = getCaloriesRequired();
-            int foodIntake = 2000;
+            int foodIntake = getDailyCalSum();
             int exerciseCaloriesBurned = getExerciseCaloriesBurned();
 
             textViewNumCaloriesRequired.setText(String.valueOf(caloriesRequired));
@@ -300,6 +434,26 @@ public class DailySummary extends AppCompatActivity {
             return 56;
         } else if ("female".equalsIgnoreCase(gender)) {
             return 46;
+        } else {
+            return -1;
+        }
+    }
+
+    private int fatsTargetBasedOnUserGender(String gender) {
+        if ("male".equalsIgnoreCase(gender)) {
+            return 90;
+        } else if ("female".equalsIgnoreCase(gender)) {
+            return 70;
+        } else {
+            return -1;
+        }
+    }
+
+    private int carbsTargetBasedOnUserGender(String gender) {
+        if ("male".equalsIgnoreCase(gender)) {
+            return 1680;
+        } else if ("female".equalsIgnoreCase(gender)) {
+            return 1200;
         } else {
             return -1;
         }

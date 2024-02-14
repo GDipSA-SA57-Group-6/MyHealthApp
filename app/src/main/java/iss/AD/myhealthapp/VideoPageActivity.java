@@ -68,9 +68,10 @@ public class VideoPageActivity extends AppCompatActivity {
         // 添加更多模拟数据以测试滚动
         adapter.notifyDataSetChanged();
     }
+    String local_host = getResources().getString(R.string.local_host);
     private void fetchDataFromApi() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/")
+                .baseUrl("http://" + local_host + ":8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

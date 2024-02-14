@@ -7,6 +7,7 @@ public class VideoInfo {
 
     // 构造函数
     public VideoInfo(String imageUrl, String description, String videoUrl) {
+
         this.imageUrl = imageUrl;
         this.description = description;
         this.videoUrl = videoUrl;
