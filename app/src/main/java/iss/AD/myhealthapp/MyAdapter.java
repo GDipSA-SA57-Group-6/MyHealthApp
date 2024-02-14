@@ -4,7 +4,11 @@ package iss.AD.myhealthapp;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +19,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -91,11 +97,32 @@ public class MyAdapter extends ArrayAdapter<Object> {
 
         }
 
+        /*
         // set the image for ImageView
         ImageView imageView = view.findViewById(R.id.imageView);
         int id = context.getResources().getIdentifier(foodList.get(pos).getName(),
                 "drawable", context.getPackageName());
         imageView.setImageResource(id);
+        */
+        Food food = foodList.get(pos);
+        // set the image for ImageView
+        ImageView imageView = view.findViewById(R.id.imageView);
+
+        if (food != null) {
+            int id = context.getResources().getIdentifier(food.getName(),
+                    "drawable", context.getPackageName());
+
+            if (id != 0) {
+                // Image resource found, set it
+                imageView.setImageResource(id);
+            } else {
+                // Image resource not found, load and display saved image
+                loadAndDisplaySavedImage(imageView, food.getName());
+            }
+        }
+
+
+
 
         // set the text for TextView
         TextView textView_1 = view.findViewById(R.id.textView_1);
@@ -105,7 +132,7 @@ public class MyAdapter extends ArrayAdapter<Object> {
         textView_2.setText(foodList.get(pos).getQuantityDescription());
 
         TextView clickCountTextView = view.findViewById(R.id.clickCountTextView);
-        Food food = foodList.get(pos);
+        //Food food = foodList.get(pos);
 
         int clickCount = clickCountMap.getOrDefault(food, 0);
         clickCountTextView.setText("You’ve consumed "  + clickCount +" times");
@@ -171,6 +198,31 @@ public class MyAdapter extends ArrayAdapter<Object> {
 
 
         return view;
+    }
+
+    private void loadAndDisplaySavedImage(ImageView imageView, String name) {
+        try {
+            // Get user ID from SharedPreferences
+            SharedPreferences pref = context.getSharedPreferences("user_credentials", Context.MODE_PRIVATE);
+            int userId = pref.getInt("userId", -1);
+
+            // Create a file name with user ID and food name tag
+            String fileName = "food_image_" + userId + "_" + name + ".jpg";
+
+            Log.d("MyAdapter", "Loading image: " + fileName); // Add this line for debugging
+
+            // Load the previously saved image from internal storage
+            FileInputStream inputStream = context.openFileInput(fileName);
+            Bitmap savedBitmap = BitmapFactory.decodeStream(inputStream);
+            inputStream.close();
+
+            // Display the saved image
+            imageView.setImageBitmap(savedBitmap);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("MyAdapter", "Error loading saved image: " + e.getMessage()); // Add this line for debugging
+        }
     }
 }
 
