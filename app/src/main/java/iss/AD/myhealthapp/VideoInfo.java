@@ -37,4 +37,3 @@ public class VideoInfo {
         this.vidUrl = videoUrl;
     }
 }
-

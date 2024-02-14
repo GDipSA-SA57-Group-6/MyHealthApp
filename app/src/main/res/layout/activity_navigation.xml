@@ -73,6 +73,42 @@
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
+        <TextView
+            android:id="@+id/promptText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/diabetesChart"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="According to your last prediction,"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/heartDiseasePredictionResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/promptText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Heart Disease Prediction Result"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/diabetesPredictionResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heartDiseasePredictionResult"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Diabetes Prediction Result"
+            android:textSize="16sp" />
+        
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/videoRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/diabetesPredictionResult"
+            android:layout_marginTop="8dp"/>
+
 
         <Button
             android:id="@+id/btnReturn"

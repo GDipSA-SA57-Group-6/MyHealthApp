@@ -10,13 +10,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +34,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -41,7 +50,9 @@ public class NavigationActivity extends AppCompatActivity {
     private Button btnHeartDisease;
     private Button btnDiabetes;
     private LocalDate baseDate = LocalDate.parse("2024-01-01", DateTimeFormatter.ISO_LOCAL_DATE);
-
+    private RecyclerView videoRecyclerView;
+    private VideoAdapter videoAdapter;
+    private List<VideoInfo> videoList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +88,48 @@ public class NavigationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        videoRecyclerView = findViewById(R.id.videoRecyclerView);
+        videoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // 假设您已经有了视频列表 videoList，可能是通过网络请求获取的
+        videoAdapter = new VideoAdapter(this, videoList);
+        videoRecyclerView.setAdapter(videoAdapter);
+
+        // 假设这个方法是您用来获取视频列表并更新 RecyclerView 的
+
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         fetchLastSevenHeartDiseasePredictions();
         fetchLastSevenDiabetesPredictions();
+        fetchLatestHeartDiseasePrediction();
+        fetchLatestDiabetesPrediction();
+        fetchVideos();
     }
+    private void fetchVideos() {
+        int userId = getUserIdFromPreferences();
+        if (userId == -1) {
+            return;
+        }
+        // 获取用户类型
+        getUserType(userId, userType -> {
+            if (userType != null && userType > 0) {
+                // 根据用户类型获取视频
+                getVideosByType(userType, videos -> {
+                    videoList.clear();
+                    if (videos != null) {
+                        videoList.addAll(videos);
+                        // 在主线程更新 UI
+                        runOnUiThread(() -> videoAdapter.notifyDataSetChanged());
+                    }
+                });
+            }
+        });
+    }
+
     private int getUserIdFromPreferences() {
         SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
         // 默认值-1表示用户ID不存在
@@ -195,6 +245,72 @@ public class NavigationActivity extends AppCompatActivity {
         });
     }
 
+    private void fetchLatestHeartDiseasePrediction() {
+        int userId = getUserIdFromPreferences();
+        if (userId == -1) {
+            return;
+        }
+        String url = "http://" + getResources().getString(R.string.local_host) + ":8080/api/latestHeartDiseasePredictionClass?userId=" + userId;
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("HTTP_ERROR", "Request failed", e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseData = response.body().string();
+                    int predictionClass = Integer.parseInt(responseData);
+                    runOnUiThread(() -> {
+                        TextView heartDiseasePredictionResult = findViewById(R.id.heartDiseasePredictionResult);
+                        if (predictionClass == 1) {
+                            heartDiseasePredictionResult.setText("You are highly likely to get heart diseases.");
+                        } else {
+                            heartDiseasePredictionResult.setText("You are not likely to get heart diseases");
+                        }
+                    });
+                }
+            }
+        });
+    }
+    private void fetchLatestDiabetesPrediction() {
+        int userId = getUserIdFromPreferences();
+        if (userId == -1) {
+            return;
+        }
+        String url = "http://" + getResources().getString(R.string.local_host) + ":8080/api/latestDiabetesPredictionClass?userId=" + userId;
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("HTTP_ERROR", "Request failed", e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseData = response.body().string();
+                    int predictionClass = Integer.parseInt(responseData);
+                    runOnUiThread(() -> {
+                        TextView diabetesPredictionResult = findViewById(R.id.diabetesPredictionResult);
+                        if (predictionClass == 1) {
+                            diabetesPredictionResult.setText("You are highly likely to get diabetes.");
+                        } else {
+                            diabetesPredictionResult.setText("You are not likely to get diabetes");
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+
 
     private void showHeartDiseaseChart(List<Entry> entries, String[] dates) {
         LineChart chart = findViewById(R.id.heartDiseaseChart);
@@ -230,6 +346,68 @@ public class NavigationActivity extends AppCompatActivity {
         chart.getAxisRight().setDrawGridLines(false); // 隐藏右侧Y轴的网格线
 
     }
+
+    private void getUserType(int userId, final Consumer<Integer> callback) {
+        OkHttpClient client = new OkHttpClient();
+
+
+        String local_host = getResources().getString(R.string.local_host);
+        String url = "http://" + local_host + ":8080/video/path/" + userId;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                callback.accept(null);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    int userType = Integer.parseInt(response.body().string());
+                    callback.accept(userType);
+                } else {
+                    callback.accept(null);
+                }
+            }
+        });
+    }
+    private void getVideosByType(int type, final Consumer<List<VideoInfo>> callback) {
+        OkHttpClient client = new OkHttpClient();
+
+        String local_host = getResources().getString(R.string.local_host);
+        String url = "http://" + local_host + ":8080/video/videos/" + type;
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                callback.accept(Collections.emptyList());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body().string();
+                    List<VideoInfo> videos = new Gson().fromJson(responseBody, new TypeToken<List<VideoInfo>>(){}.getType());
+                    callback.accept(videos);
+                } else {
+                    callback.accept(Collections.emptyList());
+                }
+            }
+        });
+    }
+
+
 
 
 
