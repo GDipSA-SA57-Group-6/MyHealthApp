@@ -4,13 +4,13 @@
     android:layout_height="wrap_content"
     >
 
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:queryHint="Search Something Else"
-        android:iconifiedByDefault="true" />
-
+        android:queryHint="Search something..."
+        android:iconifiedByDefault="false" />
 
 
     <ListView
@@ -18,9 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linTop"
+        android:layout_below="@+id/searchView"
+
         android:layout_marginBottom="10dp" >
     </ListView>
-
 
 
     <LinearLayout
@@ -75,4 +76,8 @@
 
     </LinearLayout>
 
+
 </RelativeLayout>
+
+
+

@@ -11,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import android.widget.Toast;
+import android.util.Log;
+
+
 
 import java.util.List;
 
@@ -34,17 +38,39 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         return new VideoViewHolder(view);
     }
 
+//    @Override
+//    public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
+//        VideoInfo video = videoList.get(position);
+//        // 设置图片和描述。使用图片加载库Glide来加载网络图片。
+//        Glide.with(context).load(video.getImageUrl()).into(holder.imageView);
+//        holder.textViewDescription.setText(video.getDescription());
+//
+//        holder.imageView.setOnClickListener(v -> {
+//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl()));
+//            context.startActivity(intent);
+//        });
+//    }
+
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
         VideoInfo video = videoList.get(position);
-        // 设置图片和描述。使用图片加载库Glide来加载网络图片。
         Glide.with(context).load(video.getImageUrl()).into(holder.imageView);
         holder.textViewDescription.setText(video.getDescription());
 
-        holder.imageView.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl()));
-            context.startActivity(intent);
-        });
+        String videoUrl = video.getVidUrl();
+
+        Log.d("VideoAdapter", "Video URL at position " + position + ": " + videoUrl);
+
+        if (videoUrl != null && !videoUrl.isEmpty()) {
+            holder.imageView.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl));
+                context.startActivity(intent);
+            });
+        } else {
+            holder.imageView.setOnClickListener(v -> {
+                Toast.makeText(context, "视频链接不可用", Toast.LENGTH_SHORT).show();
+            });
+        }
     }
 
     @Override

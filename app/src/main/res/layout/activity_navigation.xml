@@ -101,6 +101,7 @@
             android:layout_marginTop="8dp"
             android:text="Diabetes Prediction Result"
             android:textSize="16sp" />
+        
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/videoRecyclerView"
             android:layout_width="match_parent"

@@ -119,6 +119,7 @@ public class LoginPage extends AppCompatActivity {
                         editor.putString("password", password);
                         editor.putInt("userId", Integer.parseInt(userId));
                         editor.apply();
+                        Log.d("LoginPage", "User ID saved in SharedPreferences: " + userId);
 
                         // Inform the user and proceed to the next activity
                         runOnUiThread(() -> {

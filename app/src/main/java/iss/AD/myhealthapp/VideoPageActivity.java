@@ -12,6 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.widget.Toast;
+import android.content.Context;
+import androidx.preference.PreferenceManager;
+import android.util.Log;
+
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +39,7 @@ public class VideoPageActivity extends AppCompatActivity {
     private List<VideoInfo> videoList = new ArrayList<>();
     private VideoAdapter adapter;
     private RecyclerView recyclerView;
-
+    private VideoApiService apiService;
     private Dialog adDialog;
 
     @Override
@@ -46,11 +53,25 @@ public class VideoPageActivity extends AppCompatActivity {
         adapter = new VideoAdapter(this, videoList);
         recyclerView.setAdapter(adapter);
 
-        // 测试用：添加模拟数据
-        mockDataForTesting();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/") // 使用本地地址进行测试
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        // 实际请求应在后端API就绪后开启
-        // fetchDataFromApi();
+        apiService = retrofit.create(VideoApiService.class);
+        // 从SharedPreferences获取用户ID
+        SharedPreferences prefs = getSharedPreferences("user_credentials", MODE_PRIVATE);
+        int userId = prefs.getInt("userId", -1); // 默认值为-1表示未找到
+        Log.d("VideoPageActivity", "User ID from SharedPreferences: " + userId);
+
+        if (userId == -1) {
+            // 用户未登录，显示提示并返回
+            Toast.makeText(this, "No recommend videos.", Toast.LENGTH_LONG).show();
+            finish(); // 结束当前Activity，可能需要跳转到登录页面
+        } else {
+            // 用户已登录，根据用户ID获取推荐视频
+            fetchRecommendedVideos(String.valueOf(userId));
+        }
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -61,42 +82,55 @@ public class VideoPageActivity extends AppCompatActivity {
 
     }
 
-    // 模拟数据用于测试UI
-    private void mockDataForTesting() {
-        videoList.add(new VideoInfo("https://free.wzznft.com/i/2024/02/05/w4go6v.png", "视频1描述", "https://www.bilibili.com/video/BV1bH4y1h7BF/?spm_id_from=333.1365.list.card_archive.click"));
-        videoList.add(new VideoInfo("https://free.wzznft.com/i/2024/02/05/w4gxj6.png", "视频2描述", "https://www.bilibili.com/video/BV14B421z7rP/?spm_id_from=333.1365.list.card_archive.click&vd_source=53804055fd09dcd8d132a80def05c6d2"));
-        // 添加更多模拟数据以测试滚动
-        adapter.notifyDataSetChanged();
+    private void fetchRecommendedVideos(String userId) {
+        Call<Integer> recommendCall = apiService.recommendVideo(Integer.parseInt(userId));
+
+        recommendCall.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful()) {
+                    Integer type = response.body();
+                    if (type != null) {
+                        fetchVideosByType(type);
+                    } else {
+                        Toast.makeText(VideoPageActivity.this, "Failed to get video recommendations.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(VideoPageActivity.this, "Network error.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-    String local_host = getResources().getString(R.string.local_host);
-    private void fetchDataFromApi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + local_host + ":8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        VideoApiService apiService = retrofit.create(VideoApiService.class);
+    private void fetchVideosByType(int type) {
+        Call<List<VideoInfo>> videosCall = apiService.getVideosByType(type);
 
-        // 调用API
-        Call<List<VideoInfo>> call = apiService.getVideos();
-        call.enqueue(new Callback<List<VideoInfo>>() {
+        videosCall.enqueue(new Callback<List<VideoInfo>>() {
             @Override
             public void onResponse(Call<List<VideoInfo>> call, Response<List<VideoInfo>> response) {
                 if (response.isSuccessful()) {
                     videoList.clear();
                     videoList.addAll(response.body());
                     adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(VideoPageActivity.this, "Error fetching videos.", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<VideoInfo>> call, Throwable t) {
-                // 处理请求失败
+                Toast.makeText(VideoPageActivity.this, "Network error.", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void showAd() {
+        if (isFinishing() || isDestroyed()) {
+            return;
+        }
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View adView = inflater.inflate(R.layout.activity_video, null);

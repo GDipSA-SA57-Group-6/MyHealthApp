@@ -3,14 +3,13 @@ package iss.AD.myhealthapp;
 public class VideoInfo {
     private String imageUrl;
     private String description;
-    private String videoUrl;
+    private String vidUrl;
 
     // 构造函数
-    public VideoInfo(String imageUrl, String description, String videoUrl) {
-
+    public VideoInfo(String imageUrl, String description, String vidUrl) {
         this.imageUrl = imageUrl;
         this.description = description;
-        this.videoUrl = videoUrl;
+        this.vidUrl = vidUrl;
     }
 
     // Getter和Setter
@@ -30,12 +29,11 @@ public class VideoInfo {
         this.description = description;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
+    public String getVidUrl() {
+        return vidUrl;
     }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
+    public void setVidUrl(String videoUrl) {
+        this.vidUrl = videoUrl;
     }
 }
-
