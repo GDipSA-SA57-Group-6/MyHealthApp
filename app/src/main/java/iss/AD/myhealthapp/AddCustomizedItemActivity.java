@@ -14,7 +14,9 @@ import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +51,7 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
     private Button buttonPickImage;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private Bitmap temporaryBitmap;
+    OkHttpClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +65,26 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
         mcustomize_fat = findViewById(R.id.customize_fat);
         mcustomize_carbohydrates = findViewById(R.id.customize_carbohydrates);
 
+        final SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
+        int userId = pref.getInt("userId", -1);
+
+        // Make the POST request
+        client = new OkHttpClient();
 
         mAddToCountBtn = findViewById(R.id.AddToCountBtn);
 //        mAddToCountBtn.setOnClickListener(view -> createFood());
         mAddToCountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createFood();
-                startActivity(new Intent(AddCustomizedItemActivity.this, SelectActivity.class));
+                if (areFieldsNotEmpty()) {
+                    createFood(userId);
+                } else {
+                    // Show a message or take appropriate action for empty fields
+                    Toast.makeText(AddCustomizedItemActivity.this, "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
 
         imageView = findViewById(R.id.imageView);
@@ -102,6 +115,20 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean areFieldsNotEmpty() {
+        String name = mcustomize_nameOfFood.getText().toString().trim();
+        String quantity_description = mcustomize_quantity.getText().toString().trim();
+        String cal = mcustomize_calorie.getText().toString().trim();
+        String protein = mcustomize_protein.getText().toString().trim();
+        String fat = mcustomize_fat.getText().toString().trim();
+        String carb = mcustomize_carbohydrates.getText().toString().trim();
+
+        // Check if any field is empty
+        return !TextUtils.isEmpty(name) && !TextUtils.isEmpty(quantity_description) &&
+                !TextUtils.isEmpty(cal) && !TextUtils.isEmpty(protein) &&
+                !TextUtils.isEmpty(fat) && !TextUtils.isEmpty(carb);
     }
 
     private void openImagePicker() {
@@ -143,19 +170,66 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
             }
         }
     }
+    private void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
+    private boolean isValidInput(String input) {
+        // Implement logic to check name validity based on the constraints
+        return input != null && input.length() >= 4 && input.length() <= 20;
+    }
+
+    private boolean isStringWholeNumber(String input) {
+        // Regular expression to match non-negative integers
+        String regex = "\\d+";
+
+        // Check if the input matches the regular expression
+        return input.matches(regex);
+    }
 
 
-    private void createFood() {
-        final SharedPreferences pref =
-                getSharedPreferences("user_credentials", MODE_PRIVATE);
-        int userId = pref.getInt("userId",-1);
-
+    private void createFood(int userId) {
         String name = mcustomize_nameOfFood.getText().toString().trim();
+        if (isValidInput(name)) {
+        } else {
+            showToast("Food name must be 4-20 characters.");
+            return;
+        }
         String quantity_description = mcustomize_quantity.getText().toString().trim();
+        if (isValidInput(quantity_description)) {
+        } else {
+            showToast("Unit Description must be 4-20 characters.");
+            return;
+        }
         String cal = mcustomize_calorie.getText().toString().trim();
+        if (isStringWholeNumber(cal)) {
+        } else {
+            showToast("Calories must be in whole number.");
+            return;
+        }
         String protein = mcustomize_protein.getText().toString().trim();
+        if (isStringWholeNumber(protein)) {
+        } else {
+            showToast("Protein must be in whole number.");
+            return;
+        }
         String fat = mcustomize_fat.getText().toString().trim();
+        if (isStringWholeNumber(fat)) {
+        } else {
+            showToast("Fats must be in whole number.");
+            return;
+        }
         String carb = mcustomize_carbohydrates.getText().toString().trim();
+        if (isStringWholeNumber(carb)) {
+        } else {
+            showToast("Carbohydrates must be in whole number.");
+            return;
+        }
+
+        if (temporaryBitmap == null) {
+            showToast("Please select an image for the food.");
+            return;
+        }
+
         String myUserId = Integer.toString(userId);
 
         JSONObject jsonBody = new JSONObject();
@@ -165,10 +239,12 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
             jsonBody.put("cal", cal);
             jsonBody.put("protein", protein);
             jsonBody.put("fat", fat);
-            jsonBody.put("cab", carb);
+            jsonBody.put("carb", carb); // Corrected typo
             jsonBody.put("userId", myUserId);
         } catch (JSONException e) {
             e.printStackTrace();
+            showToast("Error creating JSON request body.");
+            return;
         }
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonBody.toString());
@@ -180,26 +256,27 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
                 .post(requestBody)
                 .build();
 
-        // Make the POST request
-        OkHttpClient client = new OkHttpClient();
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                //add every validation check at here
                 if (response.isSuccessful()) {
                     // Handle the successful response if needed
                     Log.d("CreateFood", "Food creation successful");
                     saveTemporaryImage(temporaryBitmap, name);
                     runOnUiThread(() -> {
                         // Show Toast
-                        Toast.makeText(AddCustomizedItemActivity.this, "Food has been created successfully", Toast.LENGTH_LONG).show();
-
-                        // Navigate back to LoginPage
-//                                Intent intent = new Intent(AddCustomizedItemActivity.this, LoginPage.class);
-//                                startActivity(intent);
-//                                finish(); // Close the current activity to prevent going back to it with the back button
+                        showToast("Food has been created successfully.");
+                        new Handler().postDelayed(() -> {
+                            Intent intent = new Intent(AddCustomizedItemActivity.this, SelectActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }, 2000);
                     });
                 } else {
                     Log.e("CreateFood", "Unexpected response code: " + response.code());
+                    showToast("Failed to create food. Please try again.");
                 }
             }
 
@@ -208,9 +285,9 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
                 e.printStackTrace();
                 Log.e("CreateFood", "Network request failed: " + e.getMessage());
             }
-
         });
     }
+
 }
 
 

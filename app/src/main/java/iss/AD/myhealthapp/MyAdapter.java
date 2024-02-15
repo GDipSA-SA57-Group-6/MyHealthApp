@@ -114,7 +114,7 @@ public class MyAdapter extends ArrayAdapter<Object> {
 
             if (id != 0) {
                 // Image resource found, set it
-                imageView.setImageResource(id);
+                imageView.setImageResource(id); //line 117
             } else {
                 // Image resource not found, load and display saved image
                 loadAndDisplaySavedImage(imageView, food.getName());
