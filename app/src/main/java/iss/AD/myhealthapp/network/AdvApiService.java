@@ -8,6 +8,6 @@ import iss.AD.myhealthapp.VideoInfo;
 import retrofit2.http.Path;
 
 public interface AdvApiService {
-    @GET("advertisement/path/{userId}")
+    @GET("/advertisements/path/{userId}")
     Call<List<AdvInfo>> getAdvertisements(@Path("userId") int userId);
 }

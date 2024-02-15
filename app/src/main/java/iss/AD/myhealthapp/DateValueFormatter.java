@@ -12,11 +12,12 @@ public class DateValueFormatter extends ValueFormatter {
 
     @Override
     public String getAxisLabel(float value, AxisBase axis) {
-        int index = Math.round(value);
-        if (index >= 0 && index < dates.length) {
-            return dates[index];
-        } else {
-            return "";
+        if ((int) value >= 0 && (int) value < dates.length) {
+            String fullDate = dates[(int) value];
+            // 假设日期格式为 "yyyy-MM-dd"
+            String[] dateParts = fullDate.split("-");
+            return dateParts[1] + "-" + dateParts[2]; // 返回 "MM-dd" 格式的日期
         }
+        return "";
     }
 }

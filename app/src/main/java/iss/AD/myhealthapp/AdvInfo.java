@@ -1,23 +1,23 @@
 package iss.AD.myhealthapp;
 
 public class AdvInfo {
-    private String imageUrl;
+    private String advurl;
     private String description;
 
 
     // 构造函数
-    public AdvInfo(String imageUrl, String description, String videoUrl) {
-        this.imageUrl = imageUrl;
+    public AdvInfo(String advUrl, String description) {
+        this.advurl = advUrl;
         this.description = description;
     }
 
     // Getter和Setter
-    public String getImageUrl() {
-        return imageUrl;
+    public String getAdvUrl() {
+        return advurl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setAdvUrl(String advUrl) {
+        this.advurl = advUrl;
     }
 
     public String getDescription() {
