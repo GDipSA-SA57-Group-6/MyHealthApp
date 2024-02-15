@@ -42,6 +42,8 @@ public class VideoPageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private VideoApiService apiService;
     private Dialog adDialog;
+    private List<AdvInfo> advList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
