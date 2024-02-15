@@ -175,6 +175,8 @@ public class CreateUser extends AppCompatActivity {
 
         String selectedGender = spinnerGender.getSelectedItem().toString();
 
+        int targetCalories =setTargetCaloriesBasedOnGender(selectedGender.toLowerCase());
+
         // Build the JSON request body
         JSONObject jsonBody = new JSONObject();
         try {
@@ -183,6 +185,8 @@ public class CreateUser extends AppCompatActivity {
             jsonBody.put("birthDate", formatter.format(birthDate)); // Include birth date in the JSON request
             jsonBody.put("emailAddress", emailAddress);
             jsonBody.put("gender", selectedGender.toLowerCase());
+            jsonBody.put("targetCalories", targetCalories);
+
         } catch (DateTimeParseException | JSONException e) {
             e.printStackTrace();
         }
@@ -221,5 +225,15 @@ public class CreateUser extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private int setTargetCaloriesBasedOnGender(String gender) {
+        if ("male".equalsIgnoreCase(gender)) {
+            return 2500;
+        } else if ("female".equalsIgnoreCase(gender)) {
+            return 2000;
+        } else {
+            return 0;
+        }
     }
 }
