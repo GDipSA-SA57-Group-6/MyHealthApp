@@ -6,6 +6,9 @@ import java.util.List;
 import iss.AD.myhealthapp.VideoInfo;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+
+
+
 public interface VideoApiService {
     @GET("/video")
     Call<List<VideoInfo>> getVideos();

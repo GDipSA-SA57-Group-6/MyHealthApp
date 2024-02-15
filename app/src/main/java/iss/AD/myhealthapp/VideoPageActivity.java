@@ -17,6 +17,7 @@ import android.widget.Toast;
 import android.content.Context;
 import androidx.preference.PreferenceManager;
 import android.util.Log;
+import android.content.Intent;
 
 
 
@@ -46,6 +47,19 @@ public class VideoPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("videoList")) {
+            List<VideoInfo> videoList = intent.getParcelableArrayListExtra("videoList");
+            // 初始化RecyclerView
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            // 初始化适配器
+            VideoAdapter adapter = new VideoAdapter(this, videoList);
+            recyclerView.setAdapter(adapter);
+        }
+
 
         recyclerView = findViewById(R.id.recyclerView);
         // 设置LayoutManager和Adapter

@@ -25,6 +25,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
+import java.util.List;
+import iss.AD.myhealthapp.network.VideoApiService;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import android.widget.Toast;
+import java.util.ArrayList;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
+
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -46,12 +56,21 @@ public class DailySummary extends AppCompatActivity {
     private int progressColor;
     private int caloriesRequired,exerciseCaloriesBurned,dailyCarbsSum,dailyFatsSum,dailyCalSum,dailyProteinSum;
     private String genderInClass;
+    private VideoApiService apiService;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_summary);
+
+        //初始化retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(VideoApiService.class);
 
         /*
         Button mBtnSetHealthTarget = findViewById(R.id.btnSetHealthTarget);
@@ -91,6 +110,7 @@ public class DailySummary extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         client = new OkHttpClient();
 
@@ -158,6 +178,44 @@ public class DailySummary extends AppCompatActivity {
 
             updateUI();
 
+        });
+
+
+        //video button
+        Button btnVideo = findViewById(R.id.btnVideo);
+        btnVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int caloriesRequired = getCaloriesRequired();
+                int foodIntake = getDailyCalSum();
+                int exerciseCaloriesBurned = getExerciseCaloriesBurned();
+
+                int difference = foodIntake - exerciseCaloriesBurned - caloriesRequired;
+
+                // 根据difference的值决定调用哪个API
+                int type = (difference <= 150) ? 6 : (difference <= 350) ? 1 : 2;
+                retrofit2.Call<List<VideoInfo>> call = apiService.getVideosByType(type);
+
+
+                call.enqueue(new retrofit2.Callback<List<VideoInfo>>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<List<VideoInfo>> call, retrofit2.Response<List<VideoInfo>> response) {
+                        if (response.isSuccessful()) {
+                            List<VideoInfo> videoList = response.body();
+                            Intent intent = new Intent(DailySummary.this, VideoPageActivity.class);
+                            intent.putParcelableArrayListExtra("videoList", (ArrayList<VideoInfo>) videoList);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(DailySummary.this, "Error fetching videos.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<List<VideoInfo>> call, Throwable t) {
+                        Toast.makeText(DailySummary.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         });
 
 
