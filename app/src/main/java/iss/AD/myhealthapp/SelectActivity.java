@@ -81,14 +81,25 @@ public class SelectActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
 
+        Button mReturnBtn = findViewById(R.id.btnReturn);
+        mReturnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         final SharedPreferences pref =
                 getSharedPreferences("user_credentials", MODE_PRIVATE);
         int userId = pref.getInt("userId",-1);
 
         OkHttpClient client = new OkHttpClient();
 
+        String localHost = getResources().getString(R.string.local_host);
+
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8080/api/food/" + Integer.toString(userId))
+                .url("http://" + localHost + ":8080/api/food/" + Integer.toString(userId))
                 .build();
 
         client.newCall(request).enqueue(new Callback() {

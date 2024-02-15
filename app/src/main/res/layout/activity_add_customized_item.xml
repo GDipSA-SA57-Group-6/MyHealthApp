@@ -99,7 +99,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calorie: "
+            android:text="Calorie(gram):"
             android:textStyle="bold" />
 
         <EditText
@@ -120,7 +120,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Protein: "
+            android:text="Protein(gram): "
             android:textStyle="bold" />
 
         <EditText
@@ -141,7 +141,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fats: "
+            android:text="Fats(gram): "
             android:textStyle="bold" />
 
         <EditText
@@ -162,7 +162,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Carbohydrates: "
+            android:text="Carbohydrates(gram): "
             android:textStyle="bold" />
 
         <EditText

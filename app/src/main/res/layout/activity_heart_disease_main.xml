@@ -6,12 +6,22 @@
 
 
     <TextView
+        android:id="@+id/titleHeartDiseasePrediction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heart Disease Prediction"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
         android:id="@+id/dateDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Date"
         android:textSize="16sp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/titleHeartDiseasePrediction"
         android:layout_centerHorizontal="true"/>
 
     <!-- Age Input -->
