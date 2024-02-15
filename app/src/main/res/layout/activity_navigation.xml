@@ -101,12 +101,24 @@
             android:layout_marginTop="8dp"
             android:text="Diabetes Prediction Result"
             android:textSize="16sp" />
-        
+        <TextView
+            android:id="@+id/tvVideoRecommendation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@id/diabetesPredictionResult"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Please find below the relevant videos that might help with the situation."
+            android:textSize="16sp" />
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/videoRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/diabetesPredictionResult"
+            android:layout_below="@id/tvVideoRecommendation"
             android:layout_marginTop="8dp"/>
 
 

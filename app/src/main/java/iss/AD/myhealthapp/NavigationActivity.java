@@ -114,21 +114,82 @@ public class NavigationActivity extends AppCompatActivity {
         if (userId == -1) {
             return;
         }
-        // 获取用户类型
-        getUserType(userId, userType -> {
-            if (userType != null && userType > 0) {
-                // 根据用户类型获取视频
-                getVideosByType(userType, videos -> {
+        TextView tvVideoRecommendation = findViewById(R.id.tvVideoRecommendation);
+        // 检查用户是否健康
+        checkUserHealth(userId, isHealthy -> {
+            if (isHealthy) {
+                // 用户健康，不推荐视频
+                runOnUiThread(() -> {
                     videoList.clear();
-                    if (videos != null) {
-                        videoList.addAll(videos);
-                        // 在主线程更新 UI
-                        runOnUiThread(() -> videoAdapter.notifyDataSetChanged());
+                    videoAdapter.notifyDataSetChanged();
+                    tvVideoRecommendation.setVisibility(View.GONE);
+                });
+            } else {
+                // 用户不健康，根据用户类型获取视频
+                getUserType(userId, userType -> {
+                    if (userType != null && userType > 0) {
+                        getVideosByType(userType, videos -> {
+                            videoList.clear();
+                            if (videos != null) {
+                                videoList.addAll(videos);
+                                // 在主线程更新 UI
+                                runOnUiThread(() -> {
+                                    videoAdapter.notifyDataSetChanged();
+                                    tvVideoRecommendation.setVisibility(View.VISIBLE);
+                                });
+                            }
+                        });
                     }
                 });
             }
         });
     }
+
+    private void checkUserHealth(int userId, Consumer<Boolean> callback) {
+        // 同时获取心脏病和糖尿病的最新预测结果
+        String heartDiseaseUrl = "http://" + getResources().getString(R.string.local_host) + ":8080/api/latestHeartDiseasePredictionClass?userId=" + userId;
+        String diabetesUrl = "http://" + getResources().getString(R.string.local_host) + ":8080/api/latestDiabetesPredictionClass?userId=" + userId;
+
+        OkHttpClient client = new OkHttpClient();
+        Request heartDiseaseRequest = new Request.Builder().url(heartDiseaseUrl).build();
+        Request diabetesRequest = new Request.Builder().url(diabetesUrl).build();
+
+        client.newCall(heartDiseaseRequest).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("HTTP_ERROR", "Request failed", e);
+                callback.accept(false);
+            }
+
+            @Override
+            public void onResponse(Call call, Response heartDiseaseResponse) throws IOException {
+                if (heartDiseaseResponse.isSuccessful()) {
+                    int heartDiseasePredictionClass = Integer.parseInt(heartDiseaseResponse.body().string());
+                    client.newCall(diabetesRequest).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            Log.e("HTTP_ERROR", "Request failed", e);
+                            callback.accept(false);
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response diabetesResponse) throws IOException {
+                            if (diabetesResponse.isSuccessful()) {
+                                int diabetesPredictionClass = Integer.parseInt(diabetesResponse.body().string());
+                                // 如果两种病的预测结果都是 0，则认为用户健康
+                                callback.accept(heartDiseasePredictionClass == 0 && diabetesPredictionClass == 0);
+                            } else {
+                                callback.accept(false);
+                            }
+                        }
+                    });
+                } else {
+                    callback.accept(false);
+                }
+            }
+        });
+    }
+
 
     private int getUserIdFromPreferences() {
         SharedPreferences pref = getSharedPreferences("user_credentials", MODE_PRIVATE);
