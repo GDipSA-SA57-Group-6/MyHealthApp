@@ -509,9 +509,9 @@ public class DailySummary extends AppCompatActivity {
 
     private int carbsTargetBasedOnUserGender(String gender) {
         if ("male".equalsIgnoreCase(gender)) {
-            return 1680;
+            return 320;
         } else if ("female".equalsIgnoreCase(gender)) {
-            return 1200;
+            return 280;
         } else {
             return -1;
         }
