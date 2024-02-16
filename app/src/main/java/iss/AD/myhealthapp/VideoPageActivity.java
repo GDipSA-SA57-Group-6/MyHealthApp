@@ -261,7 +261,7 @@ public class VideoPageActivity extends AppCompatActivity {
             adImageView.setImageBitmap(bitmap);
             adDescriptionTextView.setText(randomAdv.getDescription());
         } else {
-            Log.d("VideoPageActivity", "广告URL格式不正确或为空");
+            Log.d("VideoPageActivity", "Adv URL format incorrect or null");
             // 可以设置一个默认图片或进行其他处理
         }
 
@@ -272,7 +272,7 @@ public class VideoPageActivity extends AppCompatActivity {
         adDescriptionTextView.setText(randomAdv.getDescription());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("广告标题");
+        builder.setTitle("Advertisement");
         builder.setView(adView);
 
         // 设置点击对话框外部区域不关闭对话框
@@ -286,7 +286,7 @@ public class VideoPageActivity extends AppCompatActivity {
         };
 
         //关闭广告对话框后重新计时，计时结束后再次加载广告
-        builder.setPositiveButton("关闭", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dismissAd();
