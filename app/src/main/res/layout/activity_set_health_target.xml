@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/appBg"
     tools:context=".SetHealthTarget">
 
     <TextView
@@ -13,9 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:textSize="38sp"
-        android:gravity="center"
         android:textStyle="bold"
+        android:textSize="40sp"
+        android:textColor="@color/titleColor"
+        android:gravity="center"
         android:text="Set My Health Target"
         android:layout_marginBottom="16dp"/>
 
@@ -52,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lose Weight"
-            android:background="#FFF8DC"
+            android:background="@drawable/option_btn_bg"
+            android:textColor="@color/white"
             android:layout_marginBottom="16dp"
             />
 
@@ -61,7 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Maintain Health"
-            android:background="#FFF8DC"
+            android:background="@drawable/option_btn_bg"
+            android:textColor="@color/white"
             android:layout_below="@id/btnLoseWeight"
             android:layout_marginBottom="16dp"
             />
@@ -71,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gain Weight"
-            android:background="#FFF8DC"
+            android:background="@drawable/option_btn_bg"
+            android:textColor="@color/white"
             android:layout_below="@id/btnMaintainHealth"
             />
 
@@ -90,7 +95,7 @@
             android:text="Return"
             android:textSize="14dp"
             android:textAllCaps="false"
-            android:background="#E0FCFA"
+            android:background="@drawable/btn_bg"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="140dp"
             android:layout_marginRight="10dp"/>
