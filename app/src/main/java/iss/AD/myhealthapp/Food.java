@@ -12,21 +12,21 @@ public class Food implements Parcelable {
     private int protein;
     private int cal;
     private int fat;
-    private int cab;
+    private int carb;
     private String userId;
     private int type;
 
     public Food() {}
 
     public Food(int id, String name, String quantity_description, int protein, int cal,
-                int fat, int cab, String userId, int type) {
+                int fat, int carb, String userId, int type) {
         this.id = id;
         this.name = name;
         this.quantity_description = quantity_description;
         this.protein = protein;
         this.cal = cal;
         this.fat = fat;
-        this.cab = cab;
+        this.carb = carb;
         this.userId = userId;
         this.type = type;
     }
@@ -38,7 +38,7 @@ public class Food implements Parcelable {
         this.protein = in.readInt();
         this.cal = in.readInt();
         this.fat = in.readInt();
-        this.cab = in.readInt();
+        this.carb = in.readInt();
         this.userId = in.readString();
         this.type = in.readInt();
     }
@@ -63,7 +63,7 @@ public class Food implements Parcelable {
         dest.writeInt(protein);
         dest.writeInt(cal);
         dest.writeInt(fat);
-        dest.writeInt(cab);
+        dest.writeInt(carb);
         dest.writeString(userId);
         dest.writeInt(type);
     }
@@ -127,11 +127,11 @@ public class Food implements Parcelable {
     }
 
     public int getCab() {
-        return cab;
+        return carb;
     }
 
     public void setCab(int cab) {
-        this.cab = cab;
+        this.carb = cab;
     }
 
     public String getUserId() {

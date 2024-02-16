@@ -173,6 +173,12 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
+
+    private boolean isValidNoSpaceInputNoSpace(String input) {
+        // Implement logic to check name validity based on the constraints
+        return input != null && input.length() >= 4 && input.length() <= 20 && !input.contains(" ");
+    }
+
     private boolean isValidInput(String input) {
         // Implement logic to check name validity based on the constraints
         return input != null && input.length() >= 4 && input.length() <= 20;
@@ -189,9 +195,9 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
 
     private void createFood(int userId) {
         String name = mcustomize_nameOfFood.getText().toString().trim();
-        if (isValidInput(name)) {
+        if (isValidNoSpaceInputNoSpace(name)) {
         } else {
-            showToast("Food name must be 4-20 characters.");
+            showToast("Food name must be 4-20 characters. Spaces are not allowed.");
             return;
         }
         String quantity_description = mcustomize_quantity.getText().toString().trim();

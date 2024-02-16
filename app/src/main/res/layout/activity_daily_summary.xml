@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/appBg"
     android:fillViewport="true">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,25 +11,26 @@
     android:orientation="vertical"
 
     >
-
+    <!--
     <ImageView
         android:id="@+id/myImageView"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg" />
+        android:src="@drawable/bg" /> -->
 
     <TextView
         android:id="@+id/myTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:textColor="@color/titleColor"
         android:gravity="center"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="2dp"
-        android:text="My Daily Summary"
-        android:textSize="40sp" />
+        android:text="My Daily Summary" />
 
 
     <LinearLayout
@@ -401,16 +403,16 @@
 -->
 
 
-    <Button
-        android:id="@+id/btnReturn"
-        android:layout_width="150dp"
-        android:layout_height="38dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="#E0FCFA"
-        android:text="Return"
-        android:textAllCaps="false"
-        android:textSize="15dp" />
+<!--    <Button-->
+<!--        android:id="@+id/btnReturn"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="38dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="#E0FCFA"-->
+<!--        android:text="Return"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="15dp" />-->
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -419,30 +421,44 @@
 <!--        android:gravity="center"-->
 <!--        android:layout_marginTop="10dp">-->
 
-<!--        <Button-->
-<!--            android:id="@+id/btnReturn"-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="38dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:background="#E0FCFA"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textSize="18sp"-->
-<!--            android:text="Return"-->
-<!--            android:layout_marginEnd="20dp"/>-->
 
-<!--        <Button-->
-<!--            android:id="@+id/btnVideo"-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="38dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:background="#E0FCFA"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textSize="18sp"-->
-<!--            android:text="Do Exercise"-->
-<!--            android:layout_marginStart="20dp"/>-->
-<!--    </LinearLayout>-->
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_bg"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:text="Return"
+            android:layout_marginEnd="20dp"/>
+
+        <Button
+            android:id="@+id/btnVideo"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_bg"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:text="Do Exercise"
+            android:layout_marginStart="20dp"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnGroupExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:text="Suggested Group Exercise"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"/>
 
 
 
-</LinearLayout>
+<!--</LinearLayout>-->
 </ScrollView>

@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:text="delete"
             android:focusable="false"
-            android:background="#89CFF0"
+            android:background="@color/light_blue"
             android:layout_gravity="right"
             android:visibility="gone"
             ></Button>

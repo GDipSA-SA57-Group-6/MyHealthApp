@@ -178,7 +178,7 @@ public class MyAdapter extends ArrayAdapter<Object> {
             textView_2.setTextColor(context.getResources().getColor(android.R.color.black));
         } else {
             btnAction.setVisibility(View.VISIBLE);
-            view.setBackgroundColor(context.getResources().getColor(R.color.my_primary));
+            view.setBackgroundColor(context.getResources().getColor(R.color.dark_blue));
 
             textView_1.setTextColor(context.getResources().getColor(android.R.color.white));
             textView_2.setTextColor(context.getResources().getColor(android.R.color.white));

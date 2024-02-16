@@ -57,12 +57,14 @@ public class DailySummary extends AppCompatActivity {
     private int caloriesRequired,exerciseCaloriesBurned,dailyCarbsSum,dailyFatsSum,dailyCalSum,dailyProteinSum;
     private String genderInClass;
     private VideoApiService apiService;
-
+    private Button mBtnGroupExercise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_summary);
+
+        mBtnGroupExercise = findViewById(R.id.btnGroupExercise);
 
         //初始化retrofit
         Retrofit retrofit = new Retrofit.Builder()
@@ -509,9 +511,9 @@ public class DailySummary extends AppCompatActivity {
 
     private int carbsTargetBasedOnUserGender(String gender) {
         if ("male".equalsIgnoreCase(gender)) {
-            return 1680;
+            return 320;
         } else if ("female".equalsIgnoreCase(gender)) {
-            return 1200;
+            return 280;
         } else {
             return -1;
         }
@@ -535,12 +537,20 @@ public class DailySummary extends AppCompatActivity {
             progressColor = ContextCompat.getColor(this, R.color.red);
             if (difference > 100 && difference <= 150) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nConsider 30 minutes of brisk walking or light jogging.");
+                setGroupExerciseClickListener("Cycling");
+
             } else if (difference > 150 && difference <= 250) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nConsider in 45 minutes of moderate-intensity exercise.");
+                setGroupExerciseClickListener("Badminton");
+
             } else if (difference > 250 && difference <= 350) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nBased on your health condition, consider engaging in 1 hour of a combination of cardio and strength training exercises.");
+                setGroupExerciseClickListener("Swimming");
+
             } else if (difference > 350) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nBased on your health condition, consider incorporating 1.5 hours of varied workouts, including cardio and strength training.");
+                setGroupExerciseClickListener("Running");
+
             } else {
                 textViewSuggestion.setText("Let's keep an active lifestyle.");
             }
@@ -554,6 +564,18 @@ public class DailySummary extends AppCompatActivity {
         // Set the maximum and current progress
         progressBar.setMax(caloriesRequired);
         progressBar.setProgress(foodIntake - exerciseCaloriesBurned);
+    }
+
+
+    private void setGroupExerciseClickListener(String exerciseType) {
+        //button initiate at line 60, 67
+        mBtnGroupExercise.setOnClickListener(view -> {
+            //TO DELETE THIS LINE:
+            Intent intent = new Intent(DailySummary.this,DailySummary.class );
+            //Intent intent = new Intent(DailySummary.this,GroupExercise.class );
+            intent.putExtra("exercise", exerciseType);
+            startActivity(intent);
+        });
     }
 
 }

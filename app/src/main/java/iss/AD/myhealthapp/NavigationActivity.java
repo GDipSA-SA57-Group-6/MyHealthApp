@@ -236,10 +236,11 @@ public class NavigationActivity extends AppCompatActivity {
                             JSONObject idObject = jsonObject.getJSONObject("id"); // 获取嵌套的 "id" 对象
                             String date = idObject.getString("date"); // 从嵌套的 "id" 对象中获取日期
                             float probability = (float) jsonObject.getDouble("predictionProbability");
-                            dates[i] = date;
-                            entries.add(new Entry(i, probability));
+                            dates[jsonArray.length() - 1 - i] = date;
+                            entries.add(new Entry(jsonArray.length() - 1 - i, probability));
 
                         }
+                        Collections.sort(entries, new EntryXComparator());
                         // 使用日期字符串数组作为X轴标签
                         runOnUiThread(() -> showHeartDiseaseChart(entries, dates));
                     } catch (JSONException e) {
@@ -290,10 +291,11 @@ public class NavigationActivity extends AppCompatActivity {
                             JSONObject idObject = jsonObject.getJSONObject("id"); // 获取嵌套的 "id" 对象
                             String date = idObject.getString("date"); // 从嵌套的 "id" 对象中获取日期
                             float probability = (float) jsonObject.getDouble("predictionProbability");
-                            dates[i] = date;
-                            entries.add(new Entry(i, probability));
+                            dates[jsonArray.length() - 1 - i] = date;
+                            entries.add(new Entry(jsonArray.length() - 1 - i, probability));
 
                         }
+                        Collections.sort(entries, new EntryXComparator());
                         // 使用日期字符串数组作为X轴标签
                         runOnUiThread(() -> showDiabetesChart(entries, dates));
                     } catch (JSONException e) {
