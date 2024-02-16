@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/appBg"
     android:fillViewport="true">
 
     <LinearLayout
@@ -15,10 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:textColor="@color/titleColor"
             android:gravity="center"
             android:text="Disease Prediction"
-            android:textStyle="bold"
             android:layout_marginBottom="0dp"/>
 
         <TextView
@@ -43,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:background="#FFF8DC"
+            android:background="@drawable/option_btn_bg"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:layout_weight="1"
             android:text="Heart Disease Prediction" />
@@ -53,7 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Diabetes Prediction"
-            android:background="#FFF8DC"
+            android:background="@drawable/option_btn_bg"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
@@ -128,7 +132,7 @@
             android:layout_width="150dp"
             android:layout_height="38dp"
             android:layout_gravity="center"
-            android:background="#E0FCFA"
+            android:background="@drawable/btn_bg"
             android:textAllCaps="false"
             android:textSize="15dp"
             android:text="Return" />

@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
-
+/*
     private ImageView imageView;
     private Button buttonPickImage;
 
@@ -110,7 +110,13 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+    */
+
 }
+
+
+
+
 /*
 
 public class MainActivity extends AppCompatActivity {
@@ -180,3 +186,28 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 */
+/*
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_foreground" />
+
+    <Button
+        android:id="@+id/buttonPickImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="16dp"
+        android:text="Pick Image" />
+</RelativeLayout>
+ */

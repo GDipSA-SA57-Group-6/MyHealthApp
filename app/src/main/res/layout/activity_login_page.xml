@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/appBg"
     tools:context=".LoginPage">
     <TextView
         android:id="@+id/loginpagelogo"
@@ -14,6 +15,8 @@
         android:layout_marginTop="32dp"
         android:text="MyHealthApp"
         android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@color/titleColor"
         android:gravity="center"
         android:layout_marginBottom="16dp"/>
 
@@ -55,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:textAllCaps="false"
-            android:background="#E0FCFA"
+            android:background="@drawable/btn_bg"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="30dp"/>
 
@@ -82,7 +85,7 @@
             android:layout_height="wrap_content"
             android:text="Create New Account"
             android:textAllCaps="false"
-            android:background="#E0FCFA"
+            android:background="@drawable/btn_bg"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="30dp"/>
 

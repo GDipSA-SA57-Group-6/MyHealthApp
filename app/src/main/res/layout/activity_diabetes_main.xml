@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/appBg"
     android:fillViewport="true">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,6 +15,9 @@
             android:layout_height="wrap_content"
             android:text="Diabetes Prediction"
             android:textSize="24sp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/titleColor"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"/>
@@ -215,7 +219,7 @@
                 android:id="@+id/backToMainBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#E0FCFA"
+                android:background="@drawable/btn_bg"
                 android:textAllCaps="false"
                 android:layout_marginLeft="10dp"
                 android:text="Back to Main" />
@@ -225,7 +229,7 @@
                 android:id="@+id/clearBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#E0FCFA"
+                android:background="@drawable/btn_bg"
                 android:textAllCaps="false"
                 android:layout_marginLeft="10dp"
                 android:text="Clear" />
@@ -234,7 +238,7 @@
                 android:id="@+id/submitBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#E0FCFA"
+                android:background="@drawable/btn_bg"
                 android:textAllCaps="false"
                 android:layout_marginLeft="10dp"
                 android:text="Predict" />
