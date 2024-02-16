@@ -59,7 +59,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
         String videoUrl = video.getVidUrl();
 
-        Log.d("VideoAdapter", "Video URL at position " + position + ": " + videoUrl);
+//        Log.d("VideoAdapter", "Video URL at position " + position + ": " + videoUrl);
 
         if (videoUrl != null && !videoUrl.isEmpty()) {
             holder.imageView.setOnClickListener(v -> {
@@ -76,6 +76,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public int getItemCount() {
         return videoList.size();
+    }
+
+    // 添加方法来更新视频列表
+    public void updateVideoList(List<VideoInfo> newVideoList) {
+        Log.d("VideoAdapter", "Updating video list with " + newVideoList.size() + " items.");
+        videoList.clear();
+        videoList.addAll(newVideoList);
+        notifyDataSetChanged(); // 通知适配器数据集已改变
+        Log.d("VideoAdapter", "Video list updated and notifyDataSetChanged called.");
     }
 
     static class VideoViewHolder extends RecyclerView.ViewHolder {

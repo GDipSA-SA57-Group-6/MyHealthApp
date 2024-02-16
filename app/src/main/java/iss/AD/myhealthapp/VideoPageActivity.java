@@ -18,6 +18,11 @@ import android.content.Context;
 import androidx.preference.PreferenceManager;
 import android.util.Log;
 import android.content.Intent;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+
+
 
 
 
@@ -47,6 +52,9 @@ public class VideoPageActivity extends AppCompatActivity {
     private AdvApiService AdvService;
     private Dialog adDialog;
     private List<AdvInfo> advList = new ArrayList<>();
+    private boolean adDisplayed = false;
+    private Runnable showAdRunnable;
+
 
 
     @Override
@@ -54,25 +62,28 @@ public class VideoPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("videoList")) {
-            List<VideoInfo> videoList = intent.getParcelableArrayListExtra("videoList");
-            // 初始化RecyclerView
-            RecyclerView recyclerView = findViewById(R.id.recyclerView);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            // 初始化适配器
-            VideoAdapter adapter = new VideoAdapter(this, videoList);
-            recyclerView.setAdapter(adapter);
-        }
+//        Intent intent = getIntent();
+//        if (intent != null && intent.hasExtra("videoList")) {
+//            List<VideoInfo> videoList = intent.getParcelableArrayListExtra("videoList");
+//            // 初始化RecyclerView
+//            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+//            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//            // 初始化适配器
+//            VideoAdapter adapter = new VideoAdapter(this, videoList);
+//            recyclerView.setAdapter(adapter);
+//        }
+        SharedPreferences prefs = getSharedPreferences("user_credentials", MODE_PRIVATE);
+        int userId = prefs.getInt("userId", -1); // 默认值为-1表示未找到
+        Log.d("VideoPageActivity", "User ID from SharedPreferences: " + userId);
 
 
         recyclerView = findViewById(R.id.recyclerView);
-        // 设置LayoutManager和Adapter
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new VideoAdapter(this, videoList);
+        adapter = new VideoAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
+        // 初始化Retrofit和API服务
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/") // 使用本地地址进行测试
                 .addConverterFactory(GsonConverterFactory.create())
@@ -80,20 +91,65 @@ public class VideoPageActivity extends AppCompatActivity {
         AdvService = retrofit.create(AdvApiService.class);
         apiService = retrofit.create(VideoApiService.class);
 
-        // 从SharedPreferences获取用户ID
-        SharedPreferences prefs = getSharedPreferences("user_credentials", MODE_PRIVATE);
-        int userId = prefs.getInt("userId", -1); // 默认值为-1表示未找到
-        Log.d("VideoPageActivity", "User ID from SharedPreferences: " + userId);
+        // 调用getVideos获取所有视频
+        apiService.getVideos().enqueue(new Callback<List<VideoInfo>>() {
+            @Override
+            public void onResponse(Call<List<VideoInfo>> call, Response<List<VideoInfo>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // 更新RecyclerView的适配器数据
+                    adapter.updateVideoList(response.body());
+                } else {
+                    Toast.makeText(VideoPageActivity.this, "Failed to fetch videos", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-        if (userId == -1) {
-            // 用户未登录，显示提示并返回
-            Toast.makeText(this, "No recommend videos.", Toast.LENGTH_LONG).show();
-            finish(); // 结束当前Activity，可能需要跳转到登录页面
-        } else {
-            // 用户已登录，根据用户ID获取推荐视频
-            fetchRecommendedVideos(String.valueOf(userId));
-            fetchAdvByType(userId);
-        }
+            @Override
+            public void onFailure(Call<List<VideoInfo>> call, Throwable t) {
+                Toast.makeText(VideoPageActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //下拉栏
+        Spinner typeSpinner = findViewById(R.id.typeSpinner);
+        String[] videoTypes = {"All Videos", "Healthy Lose Weight", "Healthy Maintain Weight", "Healthy Gain Muscle", "Proper Lose Weight", "Proper Maintain Weight", "Proper Gain Muscle"};
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, videoTypes);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(spinnerAdapter);
+
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("VideoPageActivity", "Spinner item selected: position " + position);
+                // 基于选择的类别过滤视频列表
+                if (position == 0) {
+                    fetchAllVideos();
+                    fetchAdvByType(userId);
+                } else {
+                    fetchVideosByType(position);
+                    fetchAdvByType(userId);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+//        // 从SharedPreferences获取用户ID
+//        SharedPreferences prefs = getSharedPreferences("user_credentials", MODE_PRIVATE);
+//        int userId = prefs.getInt("userId", -1); // 默认值为-1表示未找到
+//        Log.d("VideoPageActivity", "User ID from SharedPreferences: " + userId);
+//
+//        if (userId == -1) {
+//            // 用户未登录，显示提示并返回
+//            Toast.makeText(this, "No recommend videos.", Toast.LENGTH_LONG).show();
+//            finish(); // 结束当前Activity，可能需要跳转到登录页面
+//        } else {
+//            // 用户已登录，根据用户ID获取推荐视频
+//            fetchRecommendedVideos(String.valueOf(userId));
+//            fetchAdvByType(userId);
+//        }
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -134,9 +190,11 @@ public class VideoPageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<VideoInfo>> call, Response<List<VideoInfo>> response) {
                 if (response.isSuccessful()) {
+                    Log.d("VideoPageActivity", "Received videos for type " + type + ": " + response.body().size() + " videos");
                     videoList.clear();
                     videoList.addAll(response.body());
-                    adapter.notifyDataSetChanged();
+                    adapter.updateVideoList(videoList);
+//                    adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(VideoPageActivity.this, "Error fetching videos.", Toast.LENGTH_LONG).show();
                 }
@@ -174,6 +232,12 @@ public class VideoPageActivity extends AppCompatActivity {
         if (isFinishing() || isDestroyed()) {
             return;
         }
+        if (advList == null || advList.isEmpty()) {
+            Log.d("VideoPageActivity", "No advertisements available.");
+            // 这里可以处理没有广告的情况，比如显示默认广告或者不显示广告
+            return;
+        }
+
         Log.d("VideoPageActivity","advList size before random selection:" + advList.size());
 
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -241,5 +305,32 @@ public class VideoPageActivity extends AppCompatActivity {
         if (adDialog != null && adDialog.isShowing()) {
             adDialog.dismiss();
         }
+    }
+
+    private void fetchAllVideos() {
+        Call<List<VideoInfo>> call = apiService.getVideos(); // 使用之前定义的getVideos()方法
+
+        call.enqueue(new Callback<List<VideoInfo>>() {
+            @Override
+            public void onResponse(Call<List<VideoInfo>> call, Response<List<VideoInfo>> response) {
+                if (response.isSuccessful()) {
+                    Log.d("VideoPageActivity", "Received all videos: " + response.body().size() + " videos");
+                    // 如果请求成功，更新视频列表
+                    List<VideoInfo> videos = response.body();
+                    if (videos != null) {
+                        adapter.updateVideoList(videos); // 使用VideoAdapter中的updateVideoList方法更新数据
+                    } else {
+                        Toast.makeText(VideoPageActivity.this, "Video list is empty.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(VideoPageActivity.this, "Failed to fetch videos.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<VideoInfo>> call, Throwable t) {
+                Toast.makeText(VideoPageActivity.this, "Network error.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

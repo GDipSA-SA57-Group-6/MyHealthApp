@@ -182,41 +182,41 @@ public class DailySummary extends AppCompatActivity {
 
 
         //video button
-        Button btnVideo = findViewById(R.id.btnVideo);
-        btnVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int caloriesRequired = getCaloriesRequired();
-                int foodIntake = getDailyCalSum();
-                int exerciseCaloriesBurned = getExerciseCaloriesBurned();
-
-                int difference = foodIntake - exerciseCaloriesBurned - caloriesRequired;
-
-                // 根据difference的值决定调用哪个API
-                int type = (difference <= 150) ? 6 : (difference <= 350) ? 1 : 2;
-                retrofit2.Call<List<VideoInfo>> call = apiService.getVideosByType(type);
-
-
-                call.enqueue(new retrofit2.Callback<List<VideoInfo>>() {
-                    @Override
-                    public void onResponse(retrofit2.Call<List<VideoInfo>> call, retrofit2.Response<List<VideoInfo>> response) {
-                        if (response.isSuccessful()) {
-                            List<VideoInfo> videoList = response.body();
-                            Intent intent = new Intent(DailySummary.this, VideoPageActivity.class);
-                            intent.putParcelableArrayListExtra("videoList", (ArrayList<VideoInfo>) videoList);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(DailySummary.this, "Error fetching videos.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(retrofit2.Call<List<VideoInfo>> call, Throwable t) {
-                        Toast.makeText(DailySummary.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+//        Button btnVideo = findViewById(R.id.btnVideo);
+//        btnVideo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int caloriesRequired = getCaloriesRequired();
+//                int foodIntake = getDailyCalSum();
+//                int exerciseCaloriesBurned = getExerciseCaloriesBurned();
+//
+//                int difference = foodIntake - exerciseCaloriesBurned - caloriesRequired;
+//
+//                // 根据difference的值决定调用哪个API
+//                int type = (difference <= 150) ? 6 : (difference <= 350) ? 1 : 2;
+//                retrofit2.Call<List<VideoInfo>> call = apiService.getVideosByType(type);
+//
+//
+//                call.enqueue(new retrofit2.Callback<List<VideoInfo>>() {
+//                    @Override
+//                    public void onResponse(retrofit2.Call<List<VideoInfo>> call, retrofit2.Response<List<VideoInfo>> response) {
+//                        if (response.isSuccessful()) {
+//                            List<VideoInfo> videoList = response.body();
+//                            Intent intent = new Intent(DailySummary.this, VideoPageActivity.class);
+//                            intent.putParcelableArrayListExtra("videoList", (ArrayList<VideoInfo>) videoList);
+//                            startActivity(intent);
+//                        } else {
+//                            Toast.makeText(DailySummary.this, "Error fetching videos.", Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(retrofit2.Call<List<VideoInfo>> call, Throwable t) {
+//                        Toast.makeText(DailySummary.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//        });
 
 
     }
