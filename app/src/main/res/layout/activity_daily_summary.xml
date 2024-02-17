@@ -417,7 +417,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:text="Suggestion based on your daily summary: "
+            android:text="Group exercise suggestion: "
             android:textColor="@color/titleColor"
             android:textSize="16sp"
             android:textStyle="bold"/>
@@ -452,7 +452,7 @@
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 android:text="Group Exercise"
-                android:layout_marginStart="40dp"/>
+                android:layout_marginStart="0dp"/>
 
 
 
