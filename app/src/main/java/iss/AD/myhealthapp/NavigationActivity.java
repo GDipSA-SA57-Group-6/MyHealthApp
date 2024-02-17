@@ -70,7 +70,7 @@ public class NavigationActivity extends AppCompatActivity {
             }
         });
         Button btnExerciseRecommendation = findViewById(R.id.btnExerciseRecommendation);
-        btnExerciseRecommendation.setOnClickListener(new View.OnClickListener() {
+       /* btnExerciseRecommendation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NavigationActivity.this, GrouphubActivity.class);
@@ -83,7 +83,7 @@ public class NavigationActivity extends AppCompatActivity {
                 }
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 
