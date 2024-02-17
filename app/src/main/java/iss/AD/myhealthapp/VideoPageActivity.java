@@ -62,6 +62,9 @@ public class VideoPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
+
+
+
 //        Intent intent = getIntent();
 //        if (intent != null && intent.hasExtra("videoList")) {
 //            List<VideoInfo> videoList = intent.getParcelableArrayListExtra("videoList");
