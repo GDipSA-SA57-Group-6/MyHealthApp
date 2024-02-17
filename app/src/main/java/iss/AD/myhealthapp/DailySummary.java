@@ -13,8 +13,10 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -57,7 +59,9 @@ public class DailySummary extends AppCompatActivity {
     private int caloriesRequired,exerciseCaloriesBurned,dailyCarbsSum,dailyFatsSum,dailyCalSum,dailyProteinSum;
     private String genderInClass;
     //private VideoApiService apiService;
+
     //private Button mBtnGroupExercise;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -532,8 +536,10 @@ public class DailySummary extends AppCompatActivity {
 
         if (difference < -100) {
             textViewSuggestion.setText("Keep fueling your body for a healthy balance!");
+            //setGroupExerciseClickListener("Walking");
         } else if (difference >= -100 && difference <= 100) {
             textViewSuggestion.setText("Good job! You're maintaining a generally healthy lifestyle!");
+            //setGroupExerciseClickListener("Walking");
         } else if (difference > 100) {
             progressColor = ContextCompat.getColor(this, R.color.red);
             if (difference > 100 && difference <= 150) {
@@ -566,6 +572,16 @@ public class DailySummary extends AppCompatActivity {
         progressBar.setMax(caloriesRequired);
         progressBar.setProgress(foodIntake - exerciseCaloriesBurned);
     }
+
+    /*
+    private void setExerciseVideoClickListener(String videoType) {
+        mBtnExerciseVideo.setOnClickListener(view -> {
+            Intent intent = new Intent(DailySummary.this, VideoPageActivity.class);
+            intent.putExtra("exercise", videoType);
+            startActivity(intent);
+        });
+    }
+    */
 
 
     /*

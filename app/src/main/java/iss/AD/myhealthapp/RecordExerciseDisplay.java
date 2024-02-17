@@ -33,8 +33,7 @@ public class RecordExerciseDisplay extends AppCompatActivity {
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RecordExerciseDisplay.this, RecordExercise.class);
-                startActivity(intent);
+                finish();
             }
         });
 

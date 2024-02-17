@@ -30,15 +30,16 @@
 
     <Button
         android:id="@+id/btnReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Return"
-        android:textAllCaps="false"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="130dp"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
         android:background="@drawable/btn_bg"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="200dp"
-        android:layout_alignParentBottom="true"/>
+        android:textAllCaps="false"
+        android:textSize="15dp"
+        android:text="Return" />
 
 
 </RelativeLayout>
+

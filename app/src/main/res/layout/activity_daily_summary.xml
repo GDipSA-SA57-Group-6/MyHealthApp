@@ -24,9 +24,9 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:textColor="@color/titleColor"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="12dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="12dp"
             android:text="My Daily Summary"
             android:textSize="40sp" />
 
@@ -69,14 +69,14 @@
                 <FrameLayout
                     android:layout_width="100dp"
                     android:layout_height="0dp"
-                    android:layout_weight="5"
+                    android:layout_weight="6"
                     android:layout_marginBottom="1dp">
 
                     <ProgressBar
                         android:id="@+id/proteinProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_height="150dp"
                         android:layout_gravity="center"
                         android:layout_margin="1dp"
                         android:progressDrawable="@drawable/custom_progress"
@@ -136,14 +136,14 @@
                 <FrameLayout
                     android:layout_width="100dp"
                     android:layout_height="0dp"
-                    android:layout_weight="5"
+                    android:layout_weight="6"
                     android:layout_marginBottom="1dp">
 
                     <ProgressBar
                         android:id="@+id/fatsProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_height="150dp"
                         android:layout_gravity="center"
                         android:layout_margin="1dp"
                         android:progressDrawable="@drawable/custom_progress"
@@ -201,14 +201,14 @@
                 <FrameLayout
                     android:layout_width="100dp"
                     android:layout_height="0dp"
-                    android:layout_weight="5"
+                    android:layout_weight="6"
                     android:layout_marginBottom="1dp">
 
                     <ProgressBar
                         android:id="@+id/carbsProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_height="150dp"
                         android:layout_gravity="center"
                         android:layout_margin="1dp"
                         android:progressDrawable="@drawable/custom_progress"
@@ -412,6 +412,17 @@
         <!--        android:textAllCaps="false"-->
         <!--        android:textSize="15dp" />-->
 
+        <TextView
+            android:id="@+id/textViewAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="Suggestion based on your daily summary: "
+            android:textColor="@color/titleColor"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -419,43 +430,46 @@
             android:gravity="center"
             android:layout_marginTop="10dp">
 
-            <Button
-                android:id="@+id/btnReturn"
-                android:layout_width="150dp"
-                android:layout_height="38dp"
-                android:layout_gravity="center"
-                android:background="@drawable/btn_bg"
-                android:textAllCaps="false"
-                android:textSize="18sp"
-                android:text="Return"
-                android:layout_marginEnd="20dp"/>
 
+            <!--
             <Button
-                android:id="@+id/btnVideo"
+                android:id="@+id/btnExerciseVideo"
                 android:layout_width="150dp"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/dashboard_option"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 android:text="Exercise Video"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="20dp"/>-->
+
+            <Button
+                android:id="@+id/btnGroupExercise"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dashboard_option"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:text="Group Exercise"
+                android:layout_marginStart="40dp"/>
+
+
 
         </LinearLayout>
 
-        <!--
         <Button
-            android:id="@+id/btnGroupExercise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnReturn"
+            android:layout_marginTop="30dp"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
             android:layout_gravity="center"
             android:background="@drawable/btn_bg"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:text="Suggested Group Exercise"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"/>
-        -->
+            android:textSize="15dp"
+            android:text="Return" />
+
+
 
     </LinearLayout>
 </ScrollView>
