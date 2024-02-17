@@ -128,7 +128,7 @@
         <LinearLayout
             android:id="@+id/bottomBtns"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:orientation="horizontal"
             android:gravity="center"
             android:weightSum="2">
@@ -136,7 +136,7 @@
                 android:id="@+id/btnReturn"
                 android:layout_marginTop="10dp"
                 android:layout_width="0dp"
-                android:layout_height="38dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_bg"
                 android:textAllCaps="false"
@@ -145,8 +145,9 @@
             <Button
                 android:id="@+id/btnExerciseRecommendation"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
-                android:layout_height="38dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_bg"
                 android:textAllCaps="false"

@@ -69,11 +69,14 @@ public class NavigationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        
         Button btnExerciseRecommendation = findViewById(R.id.btnExerciseRecommendation);
+      
        /* btnExerciseRecommendation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, GrouphubActivity.class);
+                
                 if (hasHeartDisease || hasDiabetes) {
                     intent.putExtra("exerciseKeywords", new String[]{
                             "Walking", "Cycling", "Swimming", "Tai Chi", "Yoga", "Pilates", "Light Resistance Training", "Stretching"
@@ -83,7 +86,9 @@ public class NavigationActivity extends AppCompatActivity {
                 }
                 startActivity(intent);
             }
-        });*/
+ 
+        });
+        */
 
 
 
