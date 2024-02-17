@@ -40,6 +40,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 }
 
@@ -87,7 +88,7 @@ dependencies {
     implementation ("com.tencent.map.geolocation:TencentLocationSdk-openplatform:7.3.0")
 
     // 动态权限请求
-    implementation ("com.tbruyelle.rxpermissions2:rxpermissions:0.10.2")
+    implementation ("com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar")
     implementation ("io.reactivex.rxjava2:rxandroid:2.0.2")
     implementation ("io.reactivex.rxjava2:rxjava:2.0.0")
 
