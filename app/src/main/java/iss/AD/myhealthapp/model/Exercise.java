@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.model;
 
 public class Exercise {
     private String name;

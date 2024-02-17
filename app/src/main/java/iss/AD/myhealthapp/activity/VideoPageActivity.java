@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.activity;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,10 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.SharedPreferences;
 import android.widget.Toast;
-import android.content.Context;
+
 import androidx.preference.PreferenceManager;
 import android.util.Log;
-import android.content.Intent;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
@@ -35,6 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import iss.AD.myhealthapp.AdvInfo;
+import iss.AD.myhealthapp.R;
+import iss.AD.myhealthapp.adapter.VideoAdapter;
+import iss.AD.myhealthapp.VideoInfo;
 import iss.AD.myhealthapp.network.AdvApiService;
 import iss.AD.myhealthapp.network.VideoApiService;
 

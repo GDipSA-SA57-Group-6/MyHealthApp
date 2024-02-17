@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PublishActivity"
+    android:id="@+id/publishActivityLayout">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/activity_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                tools:context="com.lindroid.datetimepickerdemo.MainActivity">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="107dp"
+                    android:background="@drawable/banner_background"
+                    android:backgroundTint="#EBFDEE">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:text="One More Step"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Publish your own GroupHub!"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="170dp"
+                        android:layout_height="95dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/publish_image" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:background="@drawable/banner_background"
+                        android:id="@+id/groupHubName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="15dp"
+                        android:drawableStart="@drawable/title"
+                        android:ems="10"
+                        android:hint="GroupHub name"
+                        android:inputType="text"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/groupHubQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/banner_background"
+                        android:drawableStart="@drawable/number"
+                        android:ems="10"
+                        android:hint="Quantity"
+                        android:inputType="number"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/groupHubName" />
+
+                    <TextView
+                        android:id="@+id/textViewGroupHubDDL"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/banner_background"
+                        android:drawableStart="@drawable/time"
+                        android:gravity="center_vertical"
+                        android:text=" Deadline"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="@+id/groupHubQuantity"
+                        app:layout_constraintTop_toBottomOf="@+id/groupHubQuantity" />
+
+                    <Button
+                        android:id="@+id/btn_single_positioning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Press to get location"
+                        app:layout_constraintEnd_toEndOf="@+id/groupHubQuantity"
+                        app:layout_constraintStart_toStartOf="@+id/textViewGroupHubDDL"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewGroupHubDDL" />
+
+                    <TextView
+                        android:id="@+id/tv_location_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/btn_single_positioning"
+                        app:layout_constraintHorizontal_bias="0.521"
+                        app:layout_constraintStart_toStartOf="@+id/btn_single_positioning"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_single_positioning"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <com.hitomi.cmlibrary.CircleMenu
+                        android:id="@+id/circle_menu"
+                        android:layout_width="270dp"
+                        android:layout_height="270dp"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/map_fragment_container" />
+
+                    <FrameLayout
+                        android:id="@+id/map_fragment_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_location_info">
+
+                        <fragment
+                            android:id="@+id/map_fragment"
+                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
+
+                    <Button
+                        android:id="@+id/btn_exit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Exit"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/circle_menu" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

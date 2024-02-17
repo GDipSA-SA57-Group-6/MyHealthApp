@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.activity;
 
 import static java.lang.StrictMath.abs;
 

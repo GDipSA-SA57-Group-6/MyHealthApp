@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

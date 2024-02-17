@@ -13,12 +13,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,23 +36,21 @@ import org.json.JSONObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
+import iss.AD.myhealthapp.activity.SelectActivity;
+import iss.AD.myhealthapp.activity.VideoPageActivity;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import okhttp3.Request;
 import okhttp3.Call;
 import okhttp3.Callback;
-import java.util.concurrent.CountDownLatch;
 
 public class Dashboard extends AppCompatActivity {
     OkHttpClient client;

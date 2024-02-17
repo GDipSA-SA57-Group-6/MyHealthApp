@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,9 @@ import android.util.Log;
 
 
 import java.util.List;
+
+import iss.AD.myhealthapp.R;
+import iss.AD.myhealthapp.VideoInfo;
 
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {

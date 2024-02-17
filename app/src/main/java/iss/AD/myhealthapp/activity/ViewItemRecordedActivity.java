@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +33,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import iss.AD.myhealthapp.Dashboard;
+import iss.AD.myhealthapp.R;
+import iss.AD.myhealthapp.Submission;
+import iss.AD.myhealthapp.SubmissionItem;
+import iss.AD.myhealthapp.model.Food;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;

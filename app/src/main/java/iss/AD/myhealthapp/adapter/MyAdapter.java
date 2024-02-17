@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.adapter;
 
 
 import android.annotation.SuppressLint;
@@ -23,6 +23,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import iss.AD.myhealthapp.model.Food;
+import iss.AD.myhealthapp.R;
 
 public class MyAdapter extends ArrayAdapter<Object> {
     private final Context context;

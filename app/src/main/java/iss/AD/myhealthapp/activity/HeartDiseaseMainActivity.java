@@ -1,4 +1,4 @@
-package iss.AD.myhealthapp;
+package iss.AD.myhealthapp.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import iss.AD.myhealthapp.R;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
