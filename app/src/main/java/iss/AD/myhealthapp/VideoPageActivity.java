@@ -112,7 +112,7 @@ public class VideoPageActivity extends AppCompatActivity {
 
         //下拉栏
         Spinner typeSpinner = findViewById(R.id.typeSpinner);
-        String[] videoTypes = {"All Videos", "Healthy Lose Weight", "Healthy Maintain Weight", "Healthy Gain Muscle", "Proper Lose Weight", "Proper Maintain Weight", "Proper Gain Muscle"};
+        String[] videoTypes = {"All Videos", "Healthy Lose Weight", "Healthy Maintain Weight", "Healthy Gain Muscle", "Heart Disease", "Diabetes", "Heart Disease and Diabetes"};
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, videoTypes);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(spinnerAdapter);
