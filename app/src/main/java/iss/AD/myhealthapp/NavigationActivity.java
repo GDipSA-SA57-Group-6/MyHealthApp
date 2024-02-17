@@ -46,6 +46,8 @@ import okhttp3.Response;
 
 
 public class NavigationActivity extends AppCompatActivity {
+    private boolean hasHeartDisease = false;
+    private boolean hasDiabetes = false;
 
     private Button btnHeartDisease;
     private Button btnDiabetes;
@@ -67,6 +69,26 @@ public class NavigationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /*
+        Button btnExerciseRecommendation = findViewById(R.id.btnExerciseRecommendation);
+        btnExerciseRecommendation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, NavigationActivity.class);
+                if (hasHeartDisease || hasDiabetes) {
+                    intent.putExtra("exerciseKeywords", new String[]{
+                            "Walking", "Cycling", "Swimming", "Tai Chi", "Yoga", "Pilates", "Light Resistance Training", "Stretching"
+                    });
+                } else {
+                    intent.putExtra("exerciseKeywords", new String[]{"NaN"});
+                }
+                startActivity(intent);
+            }
+        });
+        */
+
+
 
         btnHeartDisease = findViewById(R.id.btnHeartDisease);
         btnDiabetes = findViewById(R.id.btnDiabetes);
@@ -115,80 +137,61 @@ public class NavigationActivity extends AppCompatActivity {
             return;
         }
         TextView tvVideoRecommendation = findViewById(R.id.tvVideoRecommendation);
-        // 检查用户是否健康
-        checkUserHealth(userId, isHealthy -> {
-            if (isHealthy) {
-                // 用户健康，不推荐视频
+        // 直接根据用户ID获取推荐视频类型
+        getRecommendedVideoType(userId, videoType -> {
+            if (videoType != null && videoType > 0) {
+                getVideosByType(videoType, videos -> {
+                    videoList.clear();
+                    if (videos != null) {
+                        videoList.addAll(videos);
+                        // 在主线程更新 UI
+                        runOnUiThread(() -> {
+                            videoAdapter.notifyDataSetChanged();
+                            tvVideoRecommendation.setVisibility(View.VISIBLE);
+                        });
+                    }
+                });
+            } else {
+                // 没有推荐视频类型，不显示推荐视频
                 runOnUiThread(() -> {
                     videoList.clear();
                     videoAdapter.notifyDataSetChanged();
                     tvVideoRecommendation.setVisibility(View.GONE);
                 });
-            } else {
-                // 用户不健康，根据用户类型获取视频
-                getUserType(userId, userType -> {
-                    if (userType != null && userType > 0) {
-                        getVideosByType(userType, videos -> {
-                            videoList.clear();
-                            if (videos != null) {
-                                videoList.addAll(videos);
-                                // 在主线程更新 UI
-                                runOnUiThread(() -> {
-                                    videoAdapter.notifyDataSetChanged();
-                                    tvVideoRecommendation.setVisibility(View.VISIBLE);
-                                });
-                            }
-                        });
-                    }
-                });
             }
         });
     }
 
-    private void checkUserHealth(int userId, Consumer<Boolean> callback) {
-        // 同时获取心脏病和糖尿病的最新预测结果
-        String heartDiseaseUrl = "http://" + getResources().getString(R.string.local_host) + ":8080/api/latestHeartDiseasePredictionClass?userId=" + userId;
-        String diabetesUrl = "http://" + getResources().getString(R.string.local_host) + ":8080/api/latestDiabetesPredictionClass?userId=" + userId;
-
+    private void getRecommendedVideoType(int userId, final Consumer<Integer> callback) {
         OkHttpClient client = new OkHttpClient();
-        Request heartDiseaseRequest = new Request.Builder().url(heartDiseaseUrl).build();
-        Request diabetesRequest = new Request.Builder().url(diabetesUrl).build();
+        String local_host = getResources().getString(R.string.local_host);
+        String url = "http://" + local_host + ":8080/video/path/" + userId;
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
 
-        client.newCall(heartDiseaseRequest).enqueue(new Callback() {
+        client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("HTTP_ERROR", "Request failed", e);
-                callback.accept(false);
+                e.printStackTrace();
+                callback.accept(null);
             }
 
             @Override
-            public void onResponse(Call call, Response heartDiseaseResponse) throws IOException {
-                if (heartDiseaseResponse.isSuccessful()) {
-                    int heartDiseasePredictionClass = Integer.parseInt(heartDiseaseResponse.body().string());
-                    client.newCall(diabetesRequest).enqueue(new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-                            Log.e("HTTP_ERROR", "Request failed", e);
-                            callback.accept(false);
-                        }
-
-                        @Override
-                        public void onResponse(Call call, Response diabetesResponse) throws IOException {
-                            if (diabetesResponse.isSuccessful()) {
-                                int diabetesPredictionClass = Integer.parseInt(diabetesResponse.body().string());
-                                // 如果两种病的预测结果都是 0，则认为用户健康
-                                callback.accept(heartDiseasePredictionClass == 0 && diabetesPredictionClass == 0);
-                            } else {
-                                callback.accept(false);
-                            }
-                        }
-                    });
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    int videoType = Integer.parseInt(response.body().string());
+                    callback.accept(videoType);
                 } else {
-                    callback.accept(false);
+                    callback.accept(null);
                 }
             }
         });
     }
+
+
+
 
 
     private int getUserIdFromPreferences() {
@@ -328,6 +331,7 @@ public class NavigationActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String responseData = response.body().string();
                     int predictionClass = Integer.parseInt(responseData);
+                    hasHeartDisease = (predictionClass == 1);
                     runOnUiThread(() -> {
                         TextView heartDiseasePredictionResult = findViewById(R.id.heartDiseasePredictionResult);
                         if (predictionClass == 1) {
@@ -360,6 +364,7 @@ public class NavigationActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String responseData = response.body().string();
                     int predictionClass = Integer.parseInt(responseData);
+                    hasDiabetes = (predictionClass == 1);
                     runOnUiThread(() -> {
                         TextView diabetesPredictionResult = findViewById(R.id.diabetesPredictionResult);
                         if (predictionClass == 1) {
@@ -410,36 +415,7 @@ public class NavigationActivity extends AppCompatActivity {
 
     }
 
-    private void getUserType(int userId, final Consumer<Integer> callback) {
-        OkHttpClient client = new OkHttpClient();
 
-
-        String local_host = getResources().getString(R.string.local_host);
-        String url = "http://" + local_host + ":8080/video/path/" + userId;
-
-        Request request = new Request.Builder()
-                .url(url)
-                .get()
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                callback.accept(null);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    int userType = Integer.parseInt(response.body().string());
-                    callback.accept(userType);
-                } else {
-                    callback.accept(null);
-                }
-            }
-        });
-    }
     private void getVideosByType(int type, final Consumer<List<VideoInfo>> callback) {
         OkHttpClient client = new OkHttpClient();
 

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appBg"
     android:fillViewport="true">
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -32,16 +31,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="5dp">
 
-        <Button
-            android:id="@+id/btnInfoDisplay"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="2"
-            android:background="@drawable/btn_bg"
-            android:text="Calories Info"
-            android:textSize="10sp"
-            android:textAllCaps="false"
-            android:layout_marginTop="3dp"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="30dp"
@@ -66,10 +56,12 @@
         android:orientation="horizontal">
 
     <Button
-        android:id="@+id/btnReturn"
+        android:id="@+id/btnInfoDisplay"
         android:layout_width="80dp"
         android:layout_height="45dp"
-        android:text="Return"
+        android:text="Calories Info"
+        android:textSize="10sp"
+        android:textAllCaps="false"
         android:background="@drawable/btn_bg"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="30dp"/>
@@ -104,6 +96,17 @@
         android:text="Submit"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:text="Return"
+        android:textAllCaps="false"
+        android:textSize="15dp" />
 
 </LinearLayout>
 </ScrollView>

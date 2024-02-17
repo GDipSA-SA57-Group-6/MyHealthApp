@@ -98,14 +98,27 @@ public class Dashboard extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         buttonPickImage = findViewById(R.id.buttonPickImage);
 
-        btnDiseasePrediction = findViewById(R.id.btnDiseasePrediction);
-        btnDiseasePrediction.setOnClickListener(new View.OnClickListener() {
+
+        ImageView imageViewBtn1 = findViewById(R.id.imageViewBtn1);
+        imageViewBtn1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, Dashboard.class);
+                startActivity(intent);
+            }
+        });
+
+
+        ImageView imageViewBtn2 = findViewById(R.id.imageViewBtn2);
+        imageViewBtn2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard.this, NavigationActivity.class);
                 startActivity(intent);
             }
         });
+
+
         // Initialize the Activity Result Launcher
         imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {

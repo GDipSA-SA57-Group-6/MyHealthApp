@@ -2,252 +2,250 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appBg"
     android:fillViewport="true">
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-
-    >
-    <!--
-    <ImageView
-        android:id="@+id/myImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg" /> -->
-
-    <TextView
-        android:id="@+id/myTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:textColor="@color/titleColor"
-        android:gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="2dp"
-        android:text="My Daily Summary" />
-
-
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="0dp"
-        android:paddingTop="5dp"
-        android:background="#FBEEFF">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <!--
+        <ImageView
+            android:id="@+id/myImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg" />
+        -->
+        <TextView
+            android:id="@+id/myTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:textColor="@color/titleColor"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="12dp"
+            android:text="My Daily Summary"
+            android:textSize="40sp" />
 
-        <!-- Protein -->
+
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="220dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:id="@+id/proteinTextView"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="PROTEIN"
-                android:textStyle="bold"
-                android:layout_marginBottom="1dp"/>
-            <TextView
-                android:id="@+id/proteinTextViewTarget"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="Target:"
-                android:layout_marginBottom="1dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="0dp"
+            android:paddingTop="5dp"
+            android:background="#FBEEFF">
 
             <!-- Protein -->
-            <FrameLayout
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="5"
-                android:layout_marginBottom="1dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="5dp">
 
-                <ProgressBar
-                    android:id="@+id/proteinProgressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <TextView
+                    android:id="@+id/proteinTextView"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="1dp"
-                    android:progressDrawable="@drawable/custom_progress"
-                    android:indeterminate="false"
-                    android:rotation="270"
-                    android:visibility="visible"
-                    android:progressTint="@android:color/holo_green_light"
-                    />
-            </FrameLayout>
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="PROTEIN"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"/>
+                <TextView
+                    android:id="@+id/proteinTextViewTarget"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Target:"
+                    android:layout_marginBottom="1dp"/>
 
-            <TextView
-                android:id="@+id/proteinTextViewStatus"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Current Status:"/>
-            <TextView
-                android:id="@+id/proteinTextViewDifferent"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Protein Different"/>
-        </LinearLayout>
-        <!-- Protein -->
+                <!-- Protein -->
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:layout_marginBottom="1dp">
+
+                    <ProgressBar
+                        android:id="@+id/proteinProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="1dp"
+                        android:progressDrawable="@drawable/custom_progress"
+                        android:indeterminate="false"
+                        android:rotation="270"
+                        android:visibility="visible"
+                        android:progressTint="@android:color/holo_green_light"
+                        />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/proteinTextViewStatus"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="Current Status:"/>
+                <TextView
+                    android:id="@+id/proteinTextViewDifferent"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="Protein Different"/>
+            </LinearLayout>
+            <!-- Protein -->
 
 
 
 
-
-        <!-- Fats -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="220dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:id="@+id/fatsTextView"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="FATS"
-                android:textStyle="bold"
-                android:layout_marginBottom="1dp"/>
-            <TextView
-                android:id="@+id/fatsTextViewTarget"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="Target:"
-                android:layout_marginBottom="1dp"/>
 
             <!-- Fats -->
-            <FrameLayout
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="5"
-                android:layout_marginBottom="1dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="5dp">
 
-                <ProgressBar
-                    android:id="@+id/fatsProgressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <TextView
+                    android:id="@+id/fatsTextView"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="1dp"
-                    android:progressDrawable="@drawable/custom_progress"
-                    android:indeterminate="false"
-                    android:rotation="270"
-                    android:visibility="visible"
-                    android:progressTint="@android:color/holo_green_light"
-                    />
-            </FrameLayout>
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="FATS"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"/>
+                <TextView
+                    android:id="@+id/fatsTextViewTarget"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Target:"
+                    android:layout_marginBottom="1dp"/>
 
-            <TextView
-                android:id="@+id/fatsTextViewStatus"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Current Status:"/>
-            <TextView
-                android:id="@+id/fatsTextViewDifferent"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Fats Different"/>
-        </LinearLayout>
-        <!-- Fats -->
+                <!-- Fats -->
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:layout_marginBottom="1dp">
+
+                    <ProgressBar
+                        android:id="@+id/fatsProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="1dp"
+                        android:progressDrawable="@drawable/custom_progress"
+                        android:indeterminate="false"
+                        android:rotation="270"
+                        android:visibility="visible"
+                        android:progressTint="@android:color/holo_green_light"
+                        />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/fatsTextViewStatus"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="Current Status:"/>
+                <TextView
+                    android:id="@+id/fatsTextViewDifferent"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="Fats Different"/>
+            </LinearLayout>
+            <!-- Fats -->
 
 
-
-        <!-- Carbs -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="220dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:id="@+id/carbsTextView"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="CARBS"
-                android:textStyle="bold"
-                android:layout_marginBottom="1dp"/>
-            <TextView
-                android:id="@+id/carbsTextViewTarget"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="Target:"
-                android:layout_marginBottom="1dp"/>
 
             <!-- Carbs -->
-            <FrameLayout
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="5"
-                android:layout_marginBottom="1dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="5dp">
 
-                <ProgressBar
-                    android:id="@+id/carbsProgressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <TextView
+                    android:id="@+id/carbsTextView"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="1dp"
-                    android:progressDrawable="@drawable/custom_progress"
-                    android:indeterminate="false"
-                    android:rotation="270"
-                    android:visibility="visible"
-                    android:progressTint="@android:color/holo_green_light"
-                    />
-            </FrameLayout>
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="CARBS"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"/>
+                <TextView
+                    android:id="@+id/carbsTextViewTarget"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Target:"
+                    android:layout_marginBottom="1dp"/>
 
-            <TextView
-                android:id="@+id/carbsTextViewStatus"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Current Status:"/>
-            <TextView
-                android:id="@+id/carbsTextViewDifferent"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Carbs Different"/>
+                <!-- Carbs -->
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:layout_marginBottom="1dp">
+
+                    <ProgressBar
+                        android:id="@+id/carbsProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="1dp"
+                        android:progressDrawable="@drawable/custom_progress"
+                        android:indeterminate="false"
+                        android:rotation="270"
+                        android:visibility="visible"
+                        android:progressTint="@android:color/holo_green_light"
+                        />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/carbsTextViewStatus"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="Current Status:"/>
+                <TextView
+                    android:id="@+id/carbsTextViewDifferent"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:text="Carbs Different"/>
+            </LinearLayout>
+            <!-- Carbs -->
+
         </LinearLayout>
-        <!-- Carbs -->
-
-    </LinearLayout>
-<!--
-    <Button
-        android:id="@+id/btnRecordFoodConsumption"
-        android:layout_marginTop="0dp"
-        android:layout_width="150dp"
-        android:layout_height="38dp"
-        android:layout_gravity="center"
-        android:textAllCaps="false"
-        android:textSize="15dp"
-        android:text="Record Food" />
--->
+        <!--
+            <Button
+                android:id="@+id/btnRecordFoodConsumption"
+                android:layout_marginTop="0dp"
+                android:layout_width="150dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:textSize="15dp"
+                android:text="Record Food" />
+        -->
 
 
 
@@ -284,181 +282,194 @@
 
 
                 <!-- Food Intake -->
-            <TextView
-                android:id="@+id/textViewNumFoodIntake"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
-                android:text="num"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/black"
+                <TextView
+                    android:id="@+id/textViewNumFoodIntake"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="num"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    />
+
+                <!-- Exercise Calories Burned -->
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="1dp"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewNumExerciseCaloriesBurned"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="1dp"
+                    android:text="num"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:padding="8dp"/>
+
+                <!-- Calories Required -->
+                <TextView
+                    android:id="@+id/textViewNumCompare"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="?"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:padding="8dp"/>
+
+                <!-- Calories Required -->
+                <TextView
+                    android:id="@+id/textViewNumCaloriesRequired"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="num"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:padding="8dp"/>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="16dp"
+                android:progressDrawable="@drawable/custom_progress"
+                android:indeterminate="false"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:progressTint="@android:color/holo_green_light"
                 />
 
-            <!-- Exercise Calories Burned -->
             <TextView
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="1dp"
-                android:gravity="center"
-                android:text="-"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:id="@+id/textViewSuggestionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Suggestion to optimise your health:"
+                android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/textViewNumExerciseCaloriesBurned"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="1dp"
-                android:text="num"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:padding="8dp"/>
-
-            <!-- Calories Required -->
-            <TextView
-                android:id="@+id/textViewNumCompare"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/textViewSuggestion"
+                android:layout_width="400dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="10dp"
-                android:text="?"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:padding="8dp"/>
-
-            <!-- Calories Required -->
-            <TextView
-                android:id="@+id/textViewNumCaloriesRequired"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:text="num"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:padding="8dp"/>
+                android:text="Suggestion"/>
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
-            android:progressDrawable="@drawable/custom_progress"
-            android:indeterminate="false"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            android:progressTint="@android:color/holo_green_light"
-            />
+
+        <!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="0dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btnSetHealthTarget"
+                    android:layout_width="150dp"
+                    android:layout_height="38dp"
+                    android:text="Set Health Target"
+                    android:textAllCaps="false"
+                    android:textSize="15dp"/>
+
+                <Button
+                    android:id="@+id/btnRecordExercise"
+                    android:layout_width="150dp"
+                    android:layout_height="38dp"
+                    android:text="Record Exercise"
+                    android:textAllCaps="false"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+        -->
+
+
+        <!--    <Button-->
+        <!--        android:id="@+id/btnReturn"-->
+        <!--        android:layout_width="150dp"-->
+        <!--        android:layout_height="38dp"-->
+        <!--        android:layout_gravity="center"-->
+        <!--        android:layout_marginTop="10dp"-->
+        <!--        android:background="#E0FCFA"-->
+        <!--        android:text="Return"-->
+        <!--        android:textAllCaps="false"-->
+        <!--        android:textSize="15dp" />-->
 
         <TextView
-            android:id="@+id/textViewSuggestionTitle"
+            android:id="@+id/textViewAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"
-            android:text="Suggestion to optimise your health:"
+            android:paddingLeft="10dp"
+            android:text="Group exercise suggestion: "
+            android:textColor="@color/titleColor"
+            android:textSize="16sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textViewSuggestion"
-            android:layout_width="400dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
-            android:text="Suggestion"/>
 
-    </LinearLayout>
-
-
-<!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="0dp"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnSetHealthTarget"
-            android:layout_width="150dp"
-            android:layout_height="38dp"
-            android:text="Set Health Target"
-            android:textAllCaps="false"
-            android:textSize="15dp"/>
-
-        <Button
-            android:id="@+id/btnRecordExercise"
-            android:layout_width="150dp"
-            android:layout_height="38dp"
-            android:text="Record Exercise"
-            android:textAllCaps="false"
-            android:textSize="15dp"/>
-    </LinearLayout>
--->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
 
 
-<!--    <Button-->
-<!--        android:id="@+id/btnReturn"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="38dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:background="#E0FCFA"-->
-<!--        android:text="Return"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textSize="15dp" />-->
+            <!--
+            <Button
+                android:id="@+id/btnExerciseVideo"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dashboard_option"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:text="Exercise Video"
+                android:layout_marginStart="20dp"/>-->
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:gravity="center"-->
-<!--        android:layout_marginTop="10dp">-->
+            <Button
+                android:id="@+id/btnGroupExercise"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dashboard_option"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:text="Group Exercise"
+                android:layout_marginStart="0dp"/>
 
+
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnReturn"
+            android:layout_marginTop="30dp"
             android:layout_width="150dp"
             android:layout_height="38dp"
             android:layout_gravity="center"
             android:background="@drawable/btn_bg"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:text="Return"
-            android:layout_marginEnd="20dp"/>
+            android:textSize="15dp"
+            android:text="Return" />
 
-        <Button
-            android:id="@+id/btnVideo"
-            android:layout_width="150dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center"
-            android:background="@drawable/btn_bg"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:text="Do Exercise"
-            android:layout_marginStart="20dp"/>
+
+
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/btnGroupExercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/btn_bg"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:text="Suggested Group Exercise"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"/>
-
-
-
-<!--</LinearLayout>-->
 </ScrollView>
