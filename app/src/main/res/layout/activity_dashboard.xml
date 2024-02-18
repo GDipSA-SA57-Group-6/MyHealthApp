@@ -25,7 +25,72 @@
     <!--        app:layout_constraintTop_toBottomOf="@id/btnDailySummary" />-->
 
 
+
+
+<!--    <Button-->
+<!--        android:id="@+id/btnVideoPage"-->
+<!--        android:layout_width="0dp"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="12dp"-->
+<!--    android:text="Watch Video"-->
+<!--    android:textAllCaps="false"-->
+<!--    android:textSize="15dp"-->
+<!--    android:background="@drawable/btn_bg"-->
+<!--    app:layout_constraintStart_toStartOf="@id/btnGetUser"-->
+<!--    app:layout_constraintEnd_toEndOf="@id/btnGetUser"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/btnGetUser" />-->
+
+
+
+<!--    &lt;!&ndash;    <Button&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/btnVideoPage"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="12dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:text="Watch Video"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/btnLogout" />&ndash;&gt;-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewOccasional"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="110dp"-->
+<!--        android:layout_marginTop="2dp"-->
+<!--        android:layout_marginLeft="0dp"-->
+<!--        android:layout_marginBottom="0dp"-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:background="#FFE7F7"-->
+<!--        android:text="Boost Up My Health"-->
+<!--        android:textSize="26sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/titleColor"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.36"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.380"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnSetHealthTarget"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="38dp"-->
+<!--        android:text="Set Health Target"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="15dp"-->
+<!--        android:background="#FFA7E0"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.172"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.40" />-->
+
+
     <!--
+
     <Button
         android:id="@+id/btnDiseasePrediction"
         android:layout_width="150dp"

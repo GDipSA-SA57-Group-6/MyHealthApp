@@ -49,4 +49,7 @@ dependencies {
 
     implementation ("androidx.preference:preference:1.1.1")
 
+    implementation ("androidx.cardview:cardview:1.0.0")
+
+
 }
