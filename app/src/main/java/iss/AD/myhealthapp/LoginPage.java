@@ -69,8 +69,6 @@ public class LoginPage extends AppCompatActivity {
                 String name = mUsernameTxt.getText().toString();
                 String password = mPasswordTxt.getText().toString();
                 logIn(name, password);
-
-                startProtectedActivity();
             }
         });
     }
