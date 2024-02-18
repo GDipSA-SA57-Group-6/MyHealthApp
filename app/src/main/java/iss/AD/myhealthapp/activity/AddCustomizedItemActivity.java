@@ -71,7 +71,6 @@ public class AddCustomizedItemActivity extends AppCompatActivity {
         client = new OkHttpClient();
 
         mAddToCountBtn = findViewById(R.id.AddToCountBtn);
-//        mAddToCountBtn.setOnClickListener(view -> createFood());
         mAddToCountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
