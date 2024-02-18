@@ -358,12 +358,12 @@
 
 
             <TextView
-                android:id="@+id/textViewAction"
+                android:id="@+id/textViewSuggestionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Based on your calories comsuption, we suggest: "
+                android:text="Suggestion to optimise your health:"
                 android:textColor="@color/titleColor"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -378,14 +378,16 @@
 
         </LinearLayout>
 
+
+        <!--
         <TextView
-            android:id="@+id/textViewSuggestionTitle"
+            android:id="@+id/textViewAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:text="Suggestion to optimise your health:"
+            android:text="Suggestion: "
             android:textStyle="bold"/>
 
         <Button
@@ -398,7 +400,7 @@
             android:text="Group Exercise"
             android:textAllCaps="false"
             android:textSize="18sp" />
-
+        -->
         <Button
                 android:id="@+id/btnReturn"
                 android:layout_marginTop="30dp"

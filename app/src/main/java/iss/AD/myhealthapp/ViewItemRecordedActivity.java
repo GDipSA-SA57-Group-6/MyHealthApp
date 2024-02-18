@@ -109,7 +109,7 @@ public class ViewItemRecordedActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 calculate(receivedData);
-                startActivity(new Intent(ViewItemRecordedActivity.this, Dashboard.class));
+                startActivity(new Intent(ViewItemRecordedActivity.this, DailySummary.class));
             }
         });
     }
