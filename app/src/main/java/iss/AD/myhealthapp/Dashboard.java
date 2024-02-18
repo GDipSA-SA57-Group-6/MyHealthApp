@@ -284,8 +284,7 @@ public class Dashboard extends AppCompatActivity {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // User clicked No
-                // You can choose to do nothing or handle it accordingly
+                // User clicked No, do nothing
             }
         });
         // Create and show the dialog
@@ -361,7 +360,6 @@ public class Dashboard extends AppCompatActivity {
         ArrayList<String> labels = new ArrayList<>();
         ArrayList<String> formattedDates = new ArrayList<>();
 
-        // Use java.time instead of Calendar and SimpleDateFormat
         LocalDate currentDate = LocalDate.now(ZoneId.of("Asia/Singapore"));
         DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault());
 
