@@ -1,7 +1,9 @@
 package iss.AD.myhealthapp.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import iss.AD.myhealthapp.R;
 import iss.AD.myhealthapp.adapter.ArchiveAdapter;
 import iss.AD.myhealthapp.adapter.PublishedAdapter;
 import iss.AD.myhealthapp.model.GroupHub;
@@ -34,6 +37,16 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        TextView mUserNameTextView;
+
+        mUserNameTextView = findViewById(R.id.textView7);
+
+        final SharedPreferences pref =
+                getSharedPreferences("user_credentials", MODE_PRIVATE);
+        Integer userId = pref.getInt("userId",-1);
+        String name = pref.getString("name","");
+        mUserNameTextView.setText(name);
 
         new Thread( () -> {
             try {

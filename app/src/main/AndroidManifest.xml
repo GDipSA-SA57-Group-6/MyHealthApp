@@ -81,6 +81,9 @@
             android:name=".activity.GrouphubActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.MapActivity"
+            android:exported="false" />
+        <activity
             android:name=".Dashboard"
             android:exported="false">
         </activity>
