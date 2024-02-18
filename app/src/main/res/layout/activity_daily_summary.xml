@@ -4,19 +4,18 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <!--
+
         <ImageView
             android:id="@+id/myImageView"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_height="85dp"
             android:scaleType="centerCrop"
             android:src="@drawable/bg" />
-        -->
+
         <TextView
             android:id="@+id/myTextView"
             android:layout_width="wrap_content"
@@ -24,9 +23,9 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:textColor="@color/titleColor"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="10dp"
             android:text="My Daily Summary"
             android:textSize="40sp" />
 
@@ -36,6 +35,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
             android:paddingTop="5dp"
             android:background="#FBEEFF">
 
@@ -254,8 +254,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
+            android:layout_marginTop="45dp"
+            android:paddingTop="0dp"
             android:background="#F9FFEE">
             <TextView
                 android:id="@+id/textViewDescribeFormula"
@@ -355,13 +355,17 @@
                 android:progressTint="@android:color/holo_green_light"
                 />
 
+
+
             <TextView
-                android:id="@+id/textViewSuggestionTitle"
+                android:id="@+id/textViewAction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="Suggestion to optimise your health:"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Based on your calories comsuption, we suggest: "
+                android:textColor="@color/titleColor"
+                android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -369,102 +373,39 @@
                 android:layout_width="400dp"
                 android:layout_height="80dp"
                 android:layout_marginLeft="10dp"
-                android:text="Suggestion"/>
+                android:text="Suggestion" />
+
 
         </LinearLayout>
 
-
-        <!--
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="0dp"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/btnSetHealthTarget"
-                    android:layout_width="150dp"
-                    android:layout_height="38dp"
-                    android:text="Set Health Target"
-                    android:textAllCaps="false"
-                    android:textSize="15dp"/>
-
-                <Button
-                    android:id="@+id/btnRecordExercise"
-                    android:layout_width="150dp"
-                    android:layout_height="38dp"
-                    android:text="Record Exercise"
-                    android:textAllCaps="false"
-                    android:textSize="15dp"/>
-            </LinearLayout>
-        -->
-
-
-        <!--    <Button-->
-        <!--        android:id="@+id/btnReturn"-->
-        <!--        android:layout_width="150dp"-->
-        <!--        android:layout_height="38dp"-->
-        <!--        android:layout_gravity="center"-->
-        <!--        android:layout_marginTop="10dp"-->
-        <!--        android:background="#E0FCFA"-->
-        <!--        android:text="Return"-->
-        <!--        android:textAllCaps="false"-->
-        <!--        android:textSize="15dp" />-->
-
         <TextView
-            android:id="@+id/textViewAction"
+            android:id="@+id/textViewSuggestionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="Based on your calories comsuption, we suggest: "
-            android:textColor="@color/titleColor"
-            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Suggestion to optimise your health:"
             android:textStyle="bold"/>
 
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnGroupExercise"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
+            android:layout_gravity="center"
+            android:layout_marginStart="0dp"
+            android:background="@drawable/dashboard_option"
+            android:text="Group Exercise"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
 
-
-            <!--
-                <Button
-                    android:id="@+id/btnExerciseVideo"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/dashboard_option"
-                    android:textAllCaps="false"
-                    android:textSize="18sp"
-                    android:text="Exercise Video"
-                    android:layout_marginStart="20dp"/> -->
-
-                <Button
-                    android:id="@+id/btnGroupExercise"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/dashboard_option"
-                    android:textAllCaps="false"
-                    android:textSize="18sp"
-                    android:text="Group Exercise"
-                    android:layout_marginStart="0dp"/>
-
-
-
-            </LinearLayout>
-
-            <Button
+        <Button
                 android:id="@+id/btnReturn"
                 android:layout_marginTop="30dp"
                 android:layout_width="150dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="19dp"
                 android:background="@drawable/btn_bg"
                 android:textAllCaps="false"
                 android:textSize="15dp"
