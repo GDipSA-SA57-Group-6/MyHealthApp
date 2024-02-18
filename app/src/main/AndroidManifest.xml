@@ -72,8 +72,18 @@
             android:name=".SetHealthTarget"
             android:exported="false" />
         <activity
-            android:name=".Dashboard"
+            android:name=".activity.ProfileActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.PublishActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.GrouphubActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false">
+        </activity>
         <activity
             android:name=".GetUser"
             android:exported="true" />
