@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,7 +24,7 @@ import iss.AD.myhealthapp.R; // 确保导入R类
 
 public class GrouphubActivity extends AppCompatActivity {
     private static final String TAG = "GrouphubActivity";
-    // 移除View Binding相关代码
+    private ArrayList<GroupHub> groupHubList = new ArrayList<>();
     private RecyclerView viewOngoing;
     private RecyclerView.Adapter adapterOngoing;
     private static Handler handler;
@@ -32,6 +37,14 @@ public class GrouphubActivity extends AppCompatActivity {
         // 使用findViewById代替View Binding初始化视图
         viewOngoing = findViewById(R.id.viewOngoing);
 
+        final SharedPreferences pref =
+                getSharedPreferences("user_credentials", MODE_PRIVATE);
+        Integer userId = pref.getInt("userId",-1);
+        String name = pref.getString("name","");
+
+        TextView textView = findViewById(R.id.textView2);
+        String customText = "Hi, " + name + "!";
+        textView.setText(customText);
         handler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
@@ -45,6 +58,28 @@ public class GrouphubActivity extends AppCompatActivity {
         });
 
         fetchGroupHubData();
+
+        EditText editTextSearch = findViewById(R.id.editTextText);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // 在用户输入后触发搜索
+                new Thread(() -> {
+                    ArrayList<GroupHub> searchResults = NetworkUtils.fetchGroupHubBySearch(s.toString());
+                    // 回到主线程更新UI
+                    runOnUiThread(() -> initRecyclerView(searchResults));
+                }).start();
+            }
+        });
+
     }
 
     private void fetchGroupHubData() {

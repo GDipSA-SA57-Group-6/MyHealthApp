@@ -51,10 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
         new Thread( () -> {
             try {
                 OkHttpClient okHttpClient = new OkHttpClient();
-                // 这个url为了方便，暂时没有换成带有用户id的命令，
-                // 因为安卓界面的登陆不是我做的
-                // 所以我不知道id放在哪里
-                Request request = new Request.Builder().url("http://192.168.18.35:8080/api/group-hub/get").get().build();
+                String local_host = getResources().getString(R.string.local_host);
+
+                Request request = new Request.Builder().url("http://" + local_host + ":8080/api/group-hub/get").get().build();
                 Response response = okHttpClient.newCall(request).execute();
 
                 if(!response.isSuccessful()) {

@@ -23,6 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
@@ -40,7 +41,7 @@ public class GroupHubAdapter extends RecyclerView.Adapter<GroupHubAdapter.Viewho
     private ArrayList<GroupHub> items;
     private Context context;
 
-    private static final String BASE_URL = "http://192.168.18.35:8080/api/group-hub/";
+    private static final String BASE_URL = "http://10.0.2.2/api/group-hub/";
 
     // 接收后台线程的消息，重要，不能什么都用提醒主线程数据已经更改了，因为团队合作中，当前的主线程并不是团队合作的主线程
     private Handler handler;

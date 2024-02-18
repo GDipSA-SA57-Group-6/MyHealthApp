@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -74,9 +75,8 @@ public class PublishActivity extends AppCompatActivity implements View.OnClickLi
     // 位置打印
     public static final String TAG = "PublishActivity";
 
-
     // 提交事件处理
-    private static final String BASE_URL = "http://192.168.18.35:8080/api/group-hub/";
+    private static final String BASE_URL = "http://10.0.2.2:8080/api/group-hub/";
     private OkHttpClient client = new OkHttpClient();
     private Double groupHubLongitude, groupHubLatitude;
 
@@ -163,10 +163,15 @@ public class PublishActivity extends AppCompatActivity implements View.OnClickLi
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
+                                final SharedPreferences pref =
+                                        getSharedPreferences("user_credentials", MODE_PRIVATE);
+                                Integer userId = pref.getInt("userId",-1);
+                                String username = pref.getString("name","");
 
                                 // 事件提交逻辑
-                                createGroupHub(1, name, quantity, groupHubLongitude, groupHubLatitude, date);
-                                new Thread(new Runnable() {
+                                createGroupHub(userId, name, quantity, groupHubLongitude, groupHubLatitude, date);
+                                finish();
+                                /*new Thread(new Runnable() {
                                     @Override
                                     public void run() {
                                         try {
@@ -177,7 +182,7 @@ public class PublishActivity extends AppCompatActivity implements View.OnClickLi
                                         Intent intent = new Intent(PublishActivity.this, MainActivity.class);
                                         startActivity(intent);
                                     }
-                                }).start();
+                                }).start();*/
 //                                new Thread(new Runnable() {
 //                                    @Override
 //                                    public void run() {
@@ -484,9 +489,11 @@ public class PublishActivity extends AppCompatActivity implements View.OnClickLi
         }
         RequestBody body = RequestBody.create(mediaType, jsonObject.toString());
 
+        String local_host = getResources().getString(R.string.local_host);
+
         // 现在默认为1 之后从preference里面取
         Request request = new Request.Builder()
-                .url(BASE_URL + "create?userId=1")
+                .url("http://" + local_host + ":8080/api/group-hub/" + "create?userId=" + userId)
                 .post(body)
                 .build();
 

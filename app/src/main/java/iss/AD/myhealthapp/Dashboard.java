@@ -44,6 +44,7 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
+import iss.AD.myhealthapp.activity.GrouphubActivity;
 import iss.AD.myhealthapp.activity.ProfileActivity;
 import iss.AD.myhealthapp.activity.PublishActivity;
 import iss.AD.myhealthapp.activity.SelectActivity;
@@ -115,7 +116,26 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        // 发布交互
+        ImageView publishButton = findViewById(R.id.publishBtn);
+        publishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, PublishActivity.class);
+                startActivity(intent);;
+            }
+        });
 
+
+        // grouphub list
+        ImageView grouphublistButton = findViewById(R.id.imageView3);
+        grouphublistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, GrouphubActivity.class);
+                startActivity(intent);;
+            }
+        });
         // 点击bottom bar profile图标，跳转视图
         ImageView imageView = findViewById(R.id.imageViewBtn4);
         imageView.setOnClickListener(new View.OnClickListener(){
@@ -126,15 +146,6 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        // 发布交互
-        ImageView publishButton = findViewById(R.id.imageView3);
-        publishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this, PublishActivity.class);
-                startActivity(intent);;
-            }
-        });
 
         // Initialize the Activity Result Launcher
         imagePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
