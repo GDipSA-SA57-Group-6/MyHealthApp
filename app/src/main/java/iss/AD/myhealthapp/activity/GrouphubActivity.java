@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,7 +58,11 @@ public class GrouphubActivity extends AppCompatActivity {
             }
         });
 
-        fetchGroupHubData();
+
+        fetchGroupHubData(); // 默认加载所有GroupHub数据
+
+        // 处理从其他Activity传入的Intent
+        handleIntentSearch();
 
         EditText editTextSearch = findViewById(R.id.editTextText);
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -81,7 +86,32 @@ public class GrouphubActivity extends AppCompatActivity {
         });
 
     }
+    private void handleIntentSearch() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            // 根据intent中的数据执行搜索
+            String exerciseType = intent.getStringExtra("exercise");
+            String[] exerciseKeywords = intent.getStringArrayExtra("exerciseKeywords");
 
+            // 构造搜索关键字
+            String searchQuery = "";
+            if (exerciseType != null) {
+                searchQuery = exerciseType;
+            } else if (exerciseKeywords != null && exerciseKeywords.length > 0) {
+                searchQuery = String.join(" ", exerciseKeywords);
+            }
+
+            if (!searchQuery.isEmpty()) {
+                // 执行搜索并更新UI
+                final String finalSearchQuery = searchQuery; // 创建一个effectively final的变量用于lambda表达式
+                new Thread(() -> {
+                    ArrayList<GroupHub> searchResults = NetworkUtils.fetchGroupHubBySearch(finalSearchQuery);
+                    // 回到主线程更新UI
+                    runOnUiThread(() -> initRecyclerView(searchResults));
+                }).start();
+            }
+        }
+    }
     private void fetchGroupHubData() {
         new Thread(() -> {
             try {

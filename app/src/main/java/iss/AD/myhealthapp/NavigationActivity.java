@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import iss.AD.myhealthapp.activity.DiabetesMainActivity;
+import iss.AD.myhealthapp.activity.GrouphubActivity;
 import iss.AD.myhealthapp.activity.HeartDiseaseMainActivity;
 import iss.AD.myhealthapp.adapter.VideoAdapter;
 import okhttp3.Call;
@@ -72,10 +73,10 @@ public class NavigationActivity extends AppCompatActivity {
         
         Button btnExerciseRecommendation = findViewById(R.id.btnExerciseRecommendation);
       
-       /* btnExerciseRecommendation.setOnClickListener(new View.OnClickListener() {
+       btnExerciseRecommendation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent intent = new Intent(NavigationActivity.this, GrouphubActivity.class);
                 if (hasHeartDisease || hasDiabetes) {
                     intent.putExtra("exerciseKeywords", new String[]{
                             "Walking", "Cycling", "Swimming", "Tai Chi", "Yoga", "Pilates", "Light Resistance Training", "Stretching"
@@ -87,7 +88,7 @@ public class NavigationActivity extends AppCompatActivity {
             }
  
         });
-        */
+
 
 
 

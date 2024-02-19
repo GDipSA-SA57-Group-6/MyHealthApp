@@ -28,6 +28,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.List;
+
+import iss.AD.myhealthapp.activity.GrouphubActivity;
 import iss.AD.myhealthapp.network.VideoApiService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -46,7 +48,7 @@ import okhttp3.Request;
 
 public class DailySummary extends AppCompatActivity {
     OkHttpClient client;
-    //Button mBtnSetHealthTarget, mBtnRecordExercise;
+    Button mBtnSetHealthTarget, mBtnRecordExercise;
     private NutritionTracker proteinTracker, fatsTracker, carbsTracker;
 
     //Calories
@@ -60,7 +62,7 @@ public class DailySummary extends AppCompatActivity {
     private String genderInClass;
     //private VideoApiService apiService;
 
-    //private Button mBtnGroupExercise;
+    private Button mBtnGroupExercise;
 
 
     @Override
@@ -68,7 +70,7 @@ public class DailySummary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_summary);
 
-        //mBtnGroupExercise = findViewById(R.id.btnGroupExercise);
+        mBtnGroupExercise = findViewById(R.id.btnGroupExercise);
 
         /*
         //初始化retrofit
@@ -536,27 +538,27 @@ public class DailySummary extends AppCompatActivity {
 
         if (difference < -100) {
             textViewSuggestion.setText("Keep fueling your body for a healthy balance!");
-            //setGroupExerciseClickListener("Walking");
+            setGroupExerciseClickListener("Walking");
         } else if (difference >= -100 && difference <= 100) {
             textViewSuggestion.setText("Good job! You're maintaining a generally healthy lifestyle!");
-            //setGroupExerciseClickListener("Walking");
+            setGroupExerciseClickListener("Walking");
         } else if (difference > 100) {
             progressColor = ContextCompat.getColor(this, R.color.red);
             if (difference > 100 && difference <= 150) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nConsider 30 minutes of brisk walking or light jogging.");
-                //setGroupExerciseClickListener("Cycling");
+                setGroupExerciseClickListener("Cycling");
 
             } else if (difference > 150 && difference <= 250) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nConsider in 45 minutes of moderate-intensity exercise.");
-                //setGroupExerciseClickListener("Badminton");
+                setGroupExerciseClickListener("Badminton");
 
             } else if (difference > 250 && difference <= 350) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nBased on your health condition, consider engaging in 1 hour of a combination of cardio and strength training exercises.");
-                //setGroupExerciseClickListener("Swimming");
+                setGroupExerciseClickListener("Swimming");
 
             } else if (difference > 350) {
                 textViewSuggestion.setText("Calorie Surplus: "+difference+". \nBased on your health condition, consider incorporating 1.5 hours of varied workouts, including cardio and strength training.");
-                //setGroupExerciseClickListener("Running");
+                setGroupExerciseClickListener("Running");
 
             } else {
                 textViewSuggestion.setText("Let's keep an active lifestyle.");
@@ -584,17 +586,17 @@ public class DailySummary extends AppCompatActivity {
     */
 
 
-    /*
+
     private void setGroupExerciseClickListener(String exerciseType) {
         //button initiate at line 60, 67
         mBtnGroupExercise.setOnClickListener(view -> {
             //TO DELETE THIS LINE:
-            Intent intent = new Intent(DailySummary.this,DailySummary.class );
-            //Intent intent = new Intent(DailySummary.this,GroupExercise.class );
+            //Intent intent = new Intent(DailySummary.this,DailySummary.class );
+            Intent intent = new Intent(DailySummary.this, GrouphubActivity.class );
             intent.putExtra("exercise", exerciseType);
             startActivity(intent);
         });
     }
-    */
+
 
 }
